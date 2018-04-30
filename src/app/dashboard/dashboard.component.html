@@ -1,11 +1,12 @@
 <div class="bgimg-1">
   <div class="caption">
-    <div class="container">
+    <div class="container" style="min-width: 80%">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <mat-radio-group>
-            <mat-radio-button value="1">Option 1</mat-radio-button>
-            <mat-radio-button value="2">Option 2</mat-radio-button>
+            <mat-radio-button value="1">One Way</mat-radio-button>
+            <mat-radio-button value="2">Round Trip</mat-radio-button>
+            <mat-radio-button value="3">Multi City</mat-radio-button>
           </mat-radio-group>
         </div>
       </div>
@@ -57,7 +58,7 @@
                 <i class="fas fa-minus"></i>
               </button>
             </div>
-            <input type="number" [(ngModel)]="detail.adults" min="0" disabled class="form-control form-control-lg" value="0"  >
+            <input type="text" [(ngModel)]="detail.Adult" min="0" disabled class="form-control form-control-lg" value="0"  >
             <div class="input-group-append bg-white">
               <button class="btn btn-outline-secondary" (click)="adults(true)"  type="button">
                 <i class="fas fa-plus"></i>
@@ -69,13 +70,13 @@
           <p>Child</p>
           <div class="input-group ">
             <div class="input-group-prepend bg-white">
-              <button class="btn btn-outline-secondary" (click)="adults(false)" type="button">
+              <button class="btn btn-outline-secondary" (click)="child(false)" type="button">
                 <i class="fas fa-minus"></i>
               </button>
             </div>
-            <input type="number" [(ngModel)]="detail.adults" min="0" disabled class="form-control form-control-lg" value="0"  >
+            <input type="text" [(ngModel)]="detail.Child" min="0" disabled class="form-control form-control-lg" value="0"  >
             <div class="input-group-append bg-white">
-              <button class="btn btn-outline-secondary" (click)="adults(true)"  type="button">
+              <button class="btn btn-outline-secondary" (click)="child(true)"  type="button">
                 <i class="fas fa-plus"></i>
               </button>
             </div>
@@ -85,13 +86,13 @@
           <p>Infants</p>
           <div class="input-group ">
             <div class="input-group-prepend bg-white">
-              <button class="btn btn-outline-secondary" (click)="adults(false)" type="button">
+              <button class="btn btn-outline-secondary" (click)="infant(false)" type="button">
                 <i class="fas fa-minus"></i>
               </button>
             </div>
-            <input type="number" [(ngModel)]="detail.adults" min="0" disabled class="form-control form-control-lg" value="0"  >
+            <input type="text" [(ngModel)]="detail.Infant" min="0" disabled class="form-control form-control-lg" value="0"  >
             <div class="input-group-append bg-white">
-              <button class="btn btn-outline-secondary" (click)="adults(true)"  type="button">
+              <button class="btn btn-outline-secondary" (click)="infant(true)"  type="button">
                 <i class="fas fa-plus"></i>
               </button>
             </div>
@@ -111,7 +112,8 @@
         </div>
         <div class="col-md-2">
           <p>&nbsp;</p>
-          <button type="button" style="width: 100%" class="btn btn-lg  btn-primary">Search</button>
+          <button type="button" style="width: 100%" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">SEARCH</button>
+          <!--<button type="button" style="width: 100%" class="btn btn-lg  btn-primary">Search</button>-->
         </div>
       </div>
     </div>
@@ -119,8 +121,20 @@
 </div>
 
 <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
-  <h3 style="text-align:center;">Parallax Demo</h3>
-  <p>Parallax scrolling is a web site trend where the background content is moved at a different speed than the foreground content while scrolling. Nascetur per nec posuere turpis, lectus nec libero turpis nunc at, sed posuere mollis ullamcorper libero ante lectus, blandit pellentesque a, magna turpis est sapien duis blandit dignissim. Viverra interdum mi magna mi, morbi sociis. Condimentum dui ipsum consequat morbi, curabitur aliquam pede, nullam vitae eu placerat eget et vehicula. Varius quisque non molestie dolor, nunc nisl dapibus vestibulum at, sodales tincidunt mauris ullamcorper, dapibus pulvinar, in in neque risus odio. Accumsan fringilla vulputate at quibusdam sociis eleifend, aenean maecenas vulputate, non id vehicula lorem mattis, ratione interdum sociis ornare. Suscipit proin magna cras vel, non sit platea sit, maecenas ante augue etiam maecenas, porta porttitor placerat leo.</p>
+  <h3 style="text-align:center;">GlOBE ON WINGS</h3>
+  <P>A brand new online travel service provider which has come forward with the
+    only aim to give the customers an outstanding experience to travel around the globe and explore the
+    Universe with the decent fare which an average individual can afford to pay.
+    Our company is the best of its kind with the unique brand new innovative way of serving with the
+    trending offers to satisfy each customer. Our sole concept to run the services and give the best by
+    following the only motto called &quot;TRUST&quot;. As trust provides a brand new bonding with the users and
+    understand the requirements of the loyal customers which result in an increasing gratification.
+    Our travel services include domestic and international airline ticket bookings, hotels and holiday tour
+    packages with the best tour guide plan through our site www.globeonwings.com a robust
+    technology platform drafted with its reliability and transparency.</P>
+  <P>
+    We devote our strength only to ensure the safe journey of the customers and support them in every
+    phase of their journey.</P>
 </div>
 
 <div class="bgimg-2">
@@ -178,47 +192,67 @@
   </div>
 </div>
 
-<div style="position:relative;">
-  <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
-    <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
-  </div>
-</div>
-
-<div class="bgimg-3">
-  <!--<div class="caption">-->
-    <!--<span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">SCROLL UP</span>-->
+<!--<div style="position:relative;">-->
+  <!--<div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">-->
+    <!--<p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>-->
   <!--</div>-->
-</div>
+<!--</div>-->
 
-<div style="position:relative;">
-  <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
-    <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
-  </div>
-</div>
+<!--<div class="bgimg-3">-->
+  <!--&lt;!&ndash;<div class="caption">&ndash;&gt;-->
+    <!--&lt;!&ndash;<span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">SCROLL UP</span>&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--</div>-->
 
-<div class="bgimg-1">
-  <!--<div class="caption">-->
-    <!--<span class="border">COOL!</span>-->
+<!--<div style="position:relative;">-->
+  <!--<div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">-->
+    <!--<p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>-->
   <!--</div>-->
-</div>
+<!--</div>-->
+
+<!--<div class="bgimg-1">-->
+  <!--&lt;!&ndash;<div class="caption">&ndash;&gt;-->
+    <!--&lt;!&ndash;<span class="border">COOL!</span>&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--</div>-->
 
 <!--Contact Form-->
-<div class="modal fade" id="myModal" role="dialog">
+<!-- The Modal -->
+<div class="modal fade " style="margin-top: 30vh" id="myModal">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
 
+      <!-- Modal Header -->
+      <div class="modal-header ">
+        <h4 class="modal-title">Contact Details</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="col-sm-12">
+            <input matInput class="form-control form-control-lg" placeholder="Name" value="">
+        </div>
+        <br>
+        <div class="col-sm-12">
+            <input matInput class="form-control form-control-lg" placeholder="Email" value="">
+        </div>
+        <br>
+        <div class="col-sm-12">
+            <input matInput class="form-control form-control-lg" placeholder="Phone No." value="">
+        </div>
+        <br>
+        <div class="col-sm-12 text-center">
+          <button type="button" (click)="postTicketDetails()" class="btn col-sm-6 btn-primary btn-lg" data-dismiss="modal">Save</button>
+        </div>
+      </div>
+
+
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>-->
+        <p class="font-weight-light">Please Enter your Contact Detail our Representative will contact you within 24 hours</p>
+      </div>
+
+    </div>
   </div>
 </div>

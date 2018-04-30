@@ -8,7 +8,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,6 +18,9 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {AppRouter} from './app.router';
 import {DateAdapter, MatIconModule, MatNativeDateModule} from '@angular/material';
+import {WebServicesService} from './web-services.service';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpModule} from '@angular/http';
 
 
 
@@ -32,6 +35,8 @@ import {DateAdapter, MatIconModule, MatNativeDateModule} from '@angular/material
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    HttpModule,
     FormsModule,
     BrowserAnimationsModule,
     MatIconModule,
@@ -41,9 +46,10 @@ import {DateAdapter, MatIconModule, MatNativeDateModule} from '@angular/material
     MatDatepickerModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatProgressSpinnerModule,
     AppRouter
   ],
-  providers: [],
+  providers: [WebServicesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
