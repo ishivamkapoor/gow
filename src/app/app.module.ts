@@ -21,6 +21,9 @@ import {DateAdapter, MatIconModule, MatNativeDateModule} from '@angular/material
 import {WebServicesService} from './web-services.service';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 
@@ -31,7 +34,9 @@ import {HttpModule} from '@angular/http';
     FooterComponent,
     DashboardComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    AdminLoginComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,7 @@ import {HttpModule} from '@angular/http';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatSidenavModule,
     MatIconModule,
     MatInputModule,
     MatNativeDateModule,

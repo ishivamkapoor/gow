@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {Http, Headers} from '@angular/http';
 
 import 'rxjs/add/operator/map';
+import {HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class WebServicesService {
@@ -35,6 +36,10 @@ export class WebServicesService {
   }
 
   postData(u, data) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', 'true');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE, HEAD');
     this.inProgress = true;
     return new Promise(resolve => {
       setTimeout(() => {
@@ -44,7 +49,7 @@ export class WebServicesService {
         data
         ,
         {
-          headers: new Headers({'Content-Type': 'application/json'})
+          headers: headers
         })
         .map(res => res.json())
         .subscribe((data: any) => {
@@ -79,14 +84,16 @@ export class WebServicesService {
   getAirportList(word) {
     console.log(word);
     const u = 'http://www.flightsservices.com/general/get_flight_suggestions';
-    this.http.get(u)
-      .map(res => res.json())
-      .subscribe(list => {
-        this.airportList = list.filter((port) => {
-          return port.label.toLowerCase().indexOf(word.toLowerCase()) > -1;
+    if (word != '' && word.length > 2) {
+      this.http.get(u)
+        .map(res => res.json())
+        .subscribe(list => {
+          this.airportList = list.filter((port) => {
+            return port.label.toLowerCase().indexOf(word.toLowerCase()) > -1;
+          });
+        }, err => {
+          console.log('error Occured');
         });
-      }, err => {
-        console.log('error Occured');
-      });
+    }
   }
 }
