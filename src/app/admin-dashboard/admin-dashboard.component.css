@@ -1,0 +1,13 @@
+.side{
+  height: 70vh;
+  display: block;
+  background: #282E34;
+  color: white !important;
+  border-bottom: #dddddd solid;
+}
+.main{
+  height: 100%;
+}
+.card-list-hg{
+  height: 60vh;
+}
