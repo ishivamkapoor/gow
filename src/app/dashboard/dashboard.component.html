@@ -11,13 +11,19 @@
         </div>
       </div>
       <br>
+      <form>
       <div class="row">
          <div class="col-md-4">
            <div class="input-group">
              <div class="input-group-prepend">
                <span class="input-group-text" ><i class="fas fa-map-marker"></i></span>
              </div>
-             <input type="text" class="form-control form-control-lg"  placeholder="Type Departure City">
+             <input type="text" id="textInput" [matAutocomplete]="auto" [formControl]="detail.SourceLoc" class="form-control form-control-lg"  placeholder="Type Departure City">
+             <mat-autocomplete #auto="matAutocomplete">
+               <mat-option *ngFor="let option of webService.airportList" [value]="option.label">
+                 {{ option.label }}
+               </mat-option>
+             </mat-autocomplete>
            </div>
          </div>
         <div class="col-md-4">
@@ -25,7 +31,12 @@
             <div class="input-group-prepend">
               <span class="input-group-text" ><i class="fas fa-map-marker"></i></span>
             </div>
-            <input type="text" class="form-control form-control-lg"  placeholder="Type Destination City">
+            <input type="text" class="form-control form-control-lg" [matAutocomplete]="auto2"  [formControl]="detail.DestinationLoc"  placeholder="Type Destination City">
+            <mat-autocomplete #auto2="matAutocomplete">
+              <mat-option *ngFor="let option of webService.airportList" [value]="option.label">
+                {{ option.label }}
+              </mat-option>
+            </mat-autocomplete>
           </div>
         </div>
         <div class="col-md-2">
@@ -48,6 +59,7 @@
           </div>
         </div>
       </div>
+      </form>
       <br>
       <div class="row">
         <div class="col-md-2">

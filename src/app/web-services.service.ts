@@ -9,6 +9,7 @@ export class WebServicesService {
 
   private BASE_URL = 'http://ijuju.aprosoftech.com/api/ijuju/';
   private data: any;
+  public airportList = [];
   public inProgress = false;
   constructor(private http: Http) { }
 
@@ -74,5 +75,18 @@ export class WebServicesService {
       'ClassType': 'Business'
     };
     return this.postData(u, obj);
+  }
+  getAirportList(word) {
+    console.log(word);
+    const u = 'http://www.flightsservices.com/general/get_flight_suggestions';
+    this.http.get(u)
+      .map(res => res.json())
+      .subscribe(list => {
+        this.airportList = list.filter((port) => {
+          return port.label.toLowerCase().indexOf(word.toLowerCase()) > -1;
+        });
+      }, err => {
+        console.log('error Occured');
+      });
   }
 }

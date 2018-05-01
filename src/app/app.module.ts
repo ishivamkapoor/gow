@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -38,6 +38,7 @@ import {HttpModule} from '@angular/http';
     HttpClientModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatIconModule,
     MatInputModule,
