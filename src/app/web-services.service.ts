@@ -38,8 +38,6 @@ export class WebServicesService {
   postData(u, data) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    // headers.append('Access-Control-Allow-Origin', 'true');
-    // headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE, HEAD');
     this.inProgress = true;
     return new Promise(resolve => {
       setTimeout(() => {

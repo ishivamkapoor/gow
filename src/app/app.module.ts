@@ -17,7 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {AppRouter} from './app.router';
-import {DateAdapter, MatExpansionModule, MatIconModule, MatListModule, MatNativeDateModule} from '@angular/material';
+import {DateAdapter, MatExpansionModule, MatIconModule, MatListModule, MatNativeDateModule, MatSnackBarModule} from '@angular/material';
 import {WebServicesService} from './web-services.service';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
@@ -46,6 +46,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSidenavModule,
+    MatSnackBarModule,
     MatIconModule,
     MatInputModule,
     MatListModule,

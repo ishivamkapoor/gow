@@ -1,3 +1,4 @@
+
 <div class="bgimg-1">
   <div class="caption">
     <div class="container" style="min-width: 80%">
@@ -113,7 +114,7 @@
         <div class="col-md-2">
           <p><span style="color: white" >Class</span></p>
           <div class="form-group">
-            <select [formControl]="detail.ClassType" class="form-control form-control-lg" id="sel1">
+            <select [(ngModel)]="detail.ClassType" class="form-control form-control-lg" id="sel1">
               <option >All</option>
               <option>First Supersonic</option>
               <option>Business</option>
@@ -230,6 +231,7 @@
 
 <!--Contact Form-->
 <!-- The Modal -->
+  <form>
 <div class="modal fade " style="margin-top: 30vh" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -244,22 +246,22 @@
       <div class="modal-body">
         <div class="col-sm-12">
           <div class="form-group">
-            <input matInput class="form-control form-control-lg" placeholder="Name"  value="">
-            <small class="form-text text-danger">Please fill Contact Name.</small>
+            <input [formControl]="detail.Name" matInput class="form-control form-control-lg" placeholder="Name"  value="">
+            <small *ngIf="errors.Name" class="form-text text-danger">Please fill Contact Name.</small>
           </div>
         </div>
         <br>
         <div class="col-sm-12">
           <div class="form-group">
-            <input matInput class="form-control form-control-lg" placeholder="Email" value="">
-            <small class="form-text text-danger">Please fill Valid Email Address.</small>
+            <input [formControl]="detail.Email" matInput class="form-control form-control-lg" placeholder="Email" value="">
+            <small *ngIf="errors.Email" class="form-text text-danger">Please fill Valid Email Address.</small>
           </div>
         </div>
         <br>
         <div class="col-sm-12">
           <div class="form-group">
-            <input matInput class="form-control form-control-lg" placeholder="Phone No." value="">
-            <small  class="form-text text-danger">Please fill Valid Mobile Number.</small>
+            <input [formControl]="detail.Phone" matInput class="form-control form-control-lg" placeholder="Phone No." value="">
+            <small *ngIf="errors.Promise" class="form-text text-danger">Please fill Valid Mobile Number.</small>
           </div>
         </div>
         <br>
@@ -277,3 +279,4 @@
     </div>
   </div>
 </div>
+</form>

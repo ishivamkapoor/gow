@@ -3,6 +3,7 @@ import {WebServicesService} from '../web-services.service';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
 import {FormControl} from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
 declare var Rx;
 @Component({
   selector: 'app-dashboard',
@@ -39,7 +40,7 @@ export class DashboardComponent implements OnInit {
      'ClassType': false,
      'TripType': false
    };
-  constructor(private webService: WebServicesService) {
+  constructor(private webService: WebServicesService, public snackBar: MatSnackBar) {
     this.detail.SourceLoc.valueChanges.debounceTime(500).subscribe((word) => {
       this.webService.getAirportList(word);
     });
@@ -74,51 +75,58 @@ export class DashboardComponent implements OnInit {
 
 
   postTicketDetails() {
-    if (this.detail.SourceLoc.isEmpty()) {
+    console.log(this.detail.SourceLoc.value);
+    if (this.detail.SourceLoc.value == '' || this.detail.SourceLoc.value == null ) {
       this.errors.SourceLoc = true;
+      this.snackBar.open('Please Enter Source Location','',{duration:2000});
       return;
     } else {
       this.errors.SourceLoc = false;
     }
-    if (this.detail.DestinationLoc.isEmpty()) {
+    if (this.detail.DestinationLoc.value == '' || this.detail.DestinationLoc.value == null) {
+      this.snackBar.open('Please Enter Destination Location','',{duration:2000});
       this.errors.DestinationLoc = true;
       return;
     } else {
       this.errors.DestinationLoc = false;
     }
-    if (this.detail.DepartureDate.isEmpty()) {
+    if (this.detail.DepartureDate.value == '' || this.detail.DepartureDate.value == null) {
+      this.snackBar.open('Please Enter Departure Date','',{duration:2000});
       this.errors.DepartureDate = true;
       return;
     } else {
       this.detail.DepartureDate = false;
     }
-    if (this.detail.TripType == 'Return Trip' && this.detail.DepartureDate > this.detail.ReturnDate) {
+    console.log(this.detail.DepartureDate.value);
+    console.log(new Date(this.detail.ReturnDate.value));
+    if ( new Date(this.detail.DepartureDate.value) > new Date(this.detail.ReturnDate.value)) {
+      this.snackBar.open('Please Enter Valid Departure and Return Date','',{duration:2000});
       this.errors.ReturnDate = true;
       return;
     } else {
       this.detail.ReturnDate = false;
     }
-    if (this.detail.Name.isEmpty()) {
-      this.errors.Name = true;
-      return;
-    } else {
-      this.errors.Name = false;
-    }
-    if (this.detail.Email.isEmpty()) {
-      this.errors.Email = true;
-      return;
-    } else {
-      this.errors.Email = false;
-    }
-    if (this.detail.Phone.isEmpty()) {
-      this.errors.Phone = true;
-      return;
-    } else {
-      this.errors.Phone = false;
-    }
-
-    this.webService.postInsertTick().then((data) => {
-        console.log(data);
-    });
+    // if (this.detail.Name.value == '' || this.detail.Name.value == null) {
+    //   this.errors.Name = true;
+    //   return;
+    // } else {
+    //   this.errors.Name = false;
+    // }
+    // if (this.detail.Email.value == '' || this.detail.Email.value == null) {
+    //   this.errors.Email = true;
+    //   return;
+    // } else {
+    //   this.errors.Email = false;
+    // }
+    // if (this.detail.Phone.value == '' || this.detail.Phone.value == null) {
+    //   this.errors.Phone = true;
+    //   return;
+    // } else {
+    //   this.errors.Phone = false;
+    // }
+    console.log(this.detail);
+    // this.webService.postInsertTick().then((data) => {
+    //     console.log(data);
+    // });
   }
 }
