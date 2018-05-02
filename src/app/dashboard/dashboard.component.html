@@ -42,7 +42,7 @@
         <div class="col-md-2">
           <div class="input-group">
 
-            <input class="form-control form-control-lg" [matDatepicker]="myDatepicker">
+            <input class="form-control form-control-lg" [formControl]="detail.DepartureDate" [matDatepicker]="myDatepicker">
             <div class="input-group-append bg-white">
               <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
               <mat-datepicker #myDatepicker></mat-datepicker>
@@ -51,7 +51,7 @@
         </div>
         <div class="col-sm-2">
           <div class="input-group">
-            <input class="form-control form-control-lg" [matDatepicker]="myDatepicker2">
+            <input class="form-control form-control-lg" [formControl]="detail.ReturnDate" [matDatepicker]="myDatepicker2">
             <div class="input-group-append bg-white" >
               <mat-datepicker-toggle [for]="myDatepicker2"></mat-datepicker-toggle>
               <mat-datepicker #myDatepicker2></mat-datepicker>
@@ -113,8 +113,8 @@
         <div class="col-md-2">
           <p><span style="color: white" >Class</span></p>
           <div class="form-group">
-            <select class="form-control form-control-lg" id="sel1">
-              <option>All</option>
+            <select [formControl]="detail.ClassType" class="form-control form-control-lg" id="sel1">
+              <option >All</option>
               <option>First Supersonic</option>
               <option>Business</option>
               <option>Economic</option>
@@ -243,15 +243,24 @@
       <!-- Modal body -->
       <div class="modal-body">
         <div class="col-sm-12">
-            <input matInput class="form-control form-control-lg" placeholder="Name" value="">
+          <div class="form-group">
+            <input matInput class="form-control form-control-lg" placeholder="Name"  value="">
+            <small class="form-text text-danger">Please fill Contact Name.</small>
+          </div>
         </div>
         <br>
         <div class="col-sm-12">
+          <div class="form-group">
             <input matInput class="form-control form-control-lg" placeholder="Email" value="">
+            <small class="form-text text-danger">Please fill Valid Email Address.</small>
+          </div>
         </div>
         <br>
         <div class="col-sm-12">
+          <div class="form-group">
             <input matInput class="form-control form-control-lg" placeholder="Phone No." value="">
+            <small  class="form-text text-danger">Please fill Valid Mobile Number.</small>
+          </div>
         </div>
         <br>
         <div class="col-sm-12 text-center">

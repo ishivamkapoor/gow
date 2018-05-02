@@ -11,19 +11,34 @@ declare var Rx;
 })
 export class DashboardComponent implements OnInit {
   private input = document.getElementById('textInput');
-  private detail: any = {
-    'Name': 'Raj',
-    'Email': 'er.rajnarayan@gmail.com',
-    'Phone': '8283832639',
+   detail: any = {
+    'Name': new FormControl(),
+    'Email': new FormControl(),
+    'Phone': new FormControl(),
     'SourceLoc':  new FormControl(),
     'DestinationLoc':   new FormControl(),
-    'DepartureDate': '2018-05-06 05:00:54.447',
-    'ReturnDate': '2018-05-09 05:00:54.447',
+    'DepartureDate': new FormControl(),
+    'ReturnDate': new FormControl(),
     'Adult': '0',
     'Child': '0',
     'Infant': '0',
-    'ClassType': 'Business'
+    'ClassType': 'All',
+    'TripType': 'One Way'
   };
+   errors: any = {
+     'Name': false,
+     'Email': false,
+     'Phone': false,
+     'SourceLoc':  false,
+     'DestinationLoc':  false,
+     'DepartureDate': false,
+     'ReturnDate': false,
+     'Adult': false,
+     'Child': false,
+     'Infant': false,
+     'ClassType': false,
+     'TripType': false
+   };
   constructor(private webService: WebServicesService) {
     this.detail.SourceLoc.valueChanges.debounceTime(500).subscribe((word) => {
       this.webService.getAirportList(word);
@@ -57,8 +72,51 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+
   postTicketDetails() {
-    // console.log(this.webService.postInsertTick());
+    if (this.detail.SourceLoc.isEmpty()) {
+      this.errors.SourceLoc = true;
+      return;
+    } else {
+      this.errors.SourceLoc = false;
+    }
+    if (this.detail.DestinationLoc.isEmpty()) {
+      this.errors.DestinationLoc = true;
+      return;
+    } else {
+      this.errors.DestinationLoc = false;
+    }
+    if (this.detail.DepartureDate.isEmpty()) {
+      this.errors.DepartureDate = true;
+      return;
+    } else {
+      this.detail.DepartureDate = false;
+    }
+    if (this.detail.TripType == 'Return Trip' && this.detail.DepartureDate > this.detail.ReturnDate) {
+      this.errors.ReturnDate = true;
+      return;
+    } else {
+      this.detail.ReturnDate = false;
+    }
+    if (this.detail.Name.isEmpty()) {
+      this.errors.Name = true;
+      return;
+    } else {
+      this.errors.Name = false;
+    }
+    if (this.detail.Email.isEmpty()) {
+      this.errors.Email = true;
+      return;
+    } else {
+      this.errors.Email = false;
+    }
+    if (this.detail.Phone.isEmpty()) {
+      this.errors.Phone = true;
+      return;
+    } else {
+      this.errors.Phone = false;
+    }
+
     this.webService.postInsertTick().then((data) => {
         console.log(data);
     });
