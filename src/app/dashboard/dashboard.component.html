@@ -4,10 +4,10 @@
     <div class="container" style="min-width: 80%">
       <div class="row">
         <div class="col-md-6">
-          <mat-radio-group>
-            <mat-radio-button color="primary" value="1"><span style="color: white" >One Way</span></mat-radio-button>
-            <mat-radio-button color="primary" value="2"><span style="color: white" >Round Trip</span></mat-radio-button>
-            <mat-radio-button color="primary" value="3"><span style="color: white" >Multi City</span></mat-radio-button>
+          <mat-radio-group name="tripType" [(ngModel)]="detail.TripType">
+            <mat-radio-button color="primary" value="One Way"><span style="color: white" >One Way</span></mat-radio-button>
+            <mat-radio-button color="primary" value="Round Trip"><span style="color: white" >Round Trip</span></mat-radio-button>
+            <!--<mat-radio-button color="primary" value="Multi City"><span style="color: white" >Multi City</span></mat-radio-button>-->
           </mat-radio-group>
         </div>
       </div>
@@ -43,18 +43,18 @@
         <div class="col-md-2">
           <div class="input-group">
 
-            <input class="form-control form-control-lg" [formControl]="detail.DepartureDate" [matDatepicker]="myDatepicker">
+            <input class="form-control form-control-lg" name="departureDate" [(ngModel)]="detail.DepartureDate" [matDatepicker]="myDatepicker">
             <div class="input-group-append bg-white">
               <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
               <mat-datepicker #myDatepicker></mat-datepicker>
             </div>
           </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2" *ngIf="detail.TripType=='Round Trip'">
           <div class="input-group">
-            <input class="form-control form-control-lg" [formControl]="detail.ReturnDate" [matDatepicker]="myDatepicker2">
+            <input class="form-control form-control-lg" [disabled]="detail.TripType!='Round Trip'" name="returnDate" [(ngModel)]="detail.ReturnDate" [matDatepicker]="myDatepicker2">
             <div class="input-group-append bg-white" >
-              <mat-datepicker-toggle [for]="myDatepicker2"></mat-datepicker-toggle>
+              <mat-datepicker-toggle [disabled]="detail.TripType!='Round Trip'" [for]="myDatepicker2"></mat-datepicker-toggle>
               <mat-datepicker #myDatepicker2></mat-datepicker>
             </div>
           </div>
@@ -125,7 +125,8 @@
         </div>
         <div class="col-md-2">
           <p>&nbsp;</p>
-          <button type="button" style="width: 100%" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">SEARCH</button>
+          <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#myModal">Open Modal</button>
+          <button type="button" style="width: 100%" (click)="verifySearchData()" class="btn btn-primary btn-lg">SEARCH</button>
           <!--<button type="button" style="width: 100%" class="btn btn-lg  btn-primary">Search</button>-->
         </div>
       </div>
@@ -261,12 +262,13 @@
         <div class="col-sm-12">
           <div class="form-group">
             <input [formControl]="detail.Phone" matInput class="form-control form-control-lg" placeholder="Phone No." value="">
-            <small *ngIf="errors.Promise" class="form-text text-danger">Please fill Valid Mobile Number.</small>
+            <small *ngIf="errors.Phone" class="form-text text-danger">Please fill Valid Mobile Number.</small>
           </div>
         </div>
         <br>
         <div class="col-sm-12 text-center">
-          <button type="button" (click)="postTicketDetails()" class="btn col-sm-6 btn-primary btn-lg" data-dismiss="modal">Save</button>
+          <button id="closeModalButton" [hidden]="true" data-dismiss="modal">Open Modal</button>
+          <button type="button" (click)="postTicketDetails()" class="btn col-sm-6 btn-primary btn-lg" >Save</button>
         </div>
       </div>
 

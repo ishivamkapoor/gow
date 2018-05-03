@@ -11,6 +11,7 @@ declare var Rx;
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  private currentDate = new Date();
   private input = document.getElementById('textInput');
    detail: any = {
     'Name': new FormControl(),
@@ -18,8 +19,8 @@ export class DashboardComponent implements OnInit {
     'Phone': new FormControl(),
     'SourceLoc':  new FormControl(),
     'DestinationLoc':   new FormControl(),
-    'DepartureDate': new FormControl(),
-    'ReturnDate': new FormControl(),
+    'DepartureDate': new Date(),
+    'ReturnDate': new Date(),
     'Adult': '0',
     'Child': '0',
     'Infant': '0',
@@ -76,57 +77,75 @@ export class DashboardComponent implements OnInit {
 
   postTicketDetails() {
     console.log(this.detail.SourceLoc.value);
+
+    if (this.detail.Name.value == '' || this.detail.Name.value == null) {
+      this.errors.Name = true;
+      return;
+    } else {
+      this.errors.Name = false;
+    }
+    const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+    if (this.detail.Email.value == '' || this.detail.Email.value == null || !re.test(this.detail.Email.value)) {
+      this.errors.Email = true;
+      return;
+    } else {
+      this.errors.Email = false;
+    }
+    const rePhone = /[2-9]{2}\d{8}/;
+    console.log(rePhone.test(this.detail.Phone.value));
+    if (this.detail.Phone.value == '' || this.detail.Phone.value == null || !rePhone.test(this.detail.Phone.value) || this.detail.Phone.value.length != 10) {
+      this.errors.Phone = true;
+      return;
+    } else {
+      this.errors.Phone = false;
+    }
+    document.getElementById('closeModalButton').click();
+    console.log(this.detail);
+    this.webService.postInsertTick(this.detail).then((data) => {
+        console.log(data);
+    });
+  }
+  verifySearchData() {
     if (this.detail.SourceLoc.value == '' || this.detail.SourceLoc.value == null ) {
       this.errors.SourceLoc = true;
-      this.snackBar.open('Please Enter Source Location','',{duration:2000});
+      this.snackBar.open('Please Enter Source Location', '', {duration: 2000});
       return;
     } else {
       this.errors.SourceLoc = false;
     }
     if (this.detail.DestinationLoc.value == '' || this.detail.DestinationLoc.value == null) {
-      this.snackBar.open('Please Enter Destination Location','',{duration:2000});
+      this.snackBar.open('Please Enter Destination Location', '', {duration: 2000});
       this.errors.DestinationLoc = true;
       return;
     } else {
       this.errors.DestinationLoc = false;
     }
-    if (this.detail.DepartureDate.value == '' || this.detail.DepartureDate.value == null) {
-      this.snackBar.open('Please Enter Departure Date','',{duration:2000});
+    if (this.detail.DepartureDate == '' || this.detail.DepartureDate == null) {
+      this.snackBar.open('Please Enter Departure Date', '', {duration: 2000});
       this.errors.DepartureDate = true;
       return;
     } else {
-      this.detail.DepartureDate = false;
+      this.errors.DepartureDate = false;
     }
-    console.log(this.detail.DepartureDate.value);
-    console.log(new Date(this.detail.ReturnDate.value));
-    if ( new Date(this.detail.DepartureDate.value) > new Date(this.detail.ReturnDate.value)) {
-      this.snackBar.open('Please Enter Valid Departure and Return Date','',{duration:2000});
+    if ( this.detail.DepartureDate < this.currentDate) {
+      this.snackBar.open('Please Enter Valid Departure Date', '', {duration: 2000});
+      this.errors.DepartureDate = true;
+      return;
+    } else {
+      this.errors.DepartureDate = false;
+    }
+    if ( this.detail.TripType == 'Round Trip' && this.detail.DepartureDate > this.detail.ReturnDate) {
+      this.snackBar.open('Please Enter Valid Departure and Return Date', '', {duration: 2000});
       this.errors.ReturnDate = true;
       return;
     } else {
-      this.detail.ReturnDate = false;
+      this.errors.ReturnDate = false;
     }
-    // if (this.detail.Name.value == '' || this.detail.Name.value == null) {
-    //   this.errors.Name = true;
-    //   return;
-    // } else {
-    //   this.errors.Name = false;
-    // }
-    // if (this.detail.Email.value == '' || this.detail.Email.value == null) {
-    //   this.errors.Email = true;
-    //   return;
-    // } else {
-    //   this.errors.Email = false;
-    // }
-    // if (this.detail.Phone.value == '' || this.detail.Phone.value == null) {
-    //   this.errors.Phone = true;
-    //   return;
-    // } else {
-    //   this.errors.Phone = false;
-    // }
-    console.log(this.detail);
-    // this.webService.postInsertTick().then((data) => {
-    //     console.log(data);
-    // });
+    if (this.detail.Adult == '0' && this.detail.Child == '0' && this.detail.Infant == '0') {
+      this.snackBar.open('Please Enter Valid Number of Passengers', '', {duration: 2000});
+      return;
+    }
+    document.getElementById('openModalButton').click();
   }
 }

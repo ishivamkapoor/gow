@@ -62,21 +62,38 @@ export class WebServicesService {
     });
   }
 
-  postInsertTick() {
+  postInsertTick(data) {
     const u = this.BASE_URL + 'InsertTicketQuery';
+    let date = data.DepartureDate;
+    date = date.getUTCFullYear() + '-' +
+    ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
+    ('00' + date.getUTCDate()).slice(-2) + ' ' +
+    ('00' + date.getUTCHours()).slice(-2) + ':' +
+    ('00' + date.getUTCMinutes()).slice(-2) + ':' +
+    ('00' + date.getUTCSeconds()).slice(-2);
+    let date2 = data.ReturnDate;
+    date2 = date2.getUTCFullYear() + '-' +
+      ('00' + (date2.getUTCMonth() + 1)).slice(-2) + '-' +
+      ('00' + date2.getUTCDate()).slice(-2) + ' ' +
+      ('00' + date2.getUTCHours()).slice(-2) + ':' +
+      ('00' + date2.getUTCMinutes()).slice(-2) + ':' +
+      ('00' + date2.getUTCSeconds()).slice(-2);
+
     const obj = {
-      'Name': 'Raj',
-      'Email': 'er.rajnarayan@gmail.com',
-      'Phone': '8283832639',
-      'SourceLoc': 'IGT, Delhi',
-      'DestinationLoc': 'Perth, Australia',
-      'DepartureDate': '2018-05-06 05:00:54.447',
-      'ReturnDate': '2018-05-09 05:00:54.447',
-      'Adult': '1',
-      'Child': '0',
-      'Infant': '0',
-      'ClassType': 'Business'
+      'Name': data.Name.value,
+      'Email': data.Email.value,
+      'Phone': data.Phone.value,
+      'SourceLoc': data.SourceLoc.value,
+      'DestinationLoc': data.DestinationLoc.value,
+      'DepartureDate': date ,
+      'ReturnDate': date2,
+      'Adult': data.Adult,
+      'Child': data.Child,
+      'Infant': data.Infant,
+      'ClassType': data.ClassType,
+      'TripType': data.TripType
     };
+    console.log(JSON.stringify(obj));
     return this.postData(u, obj);
   }
   getAirportList(word) {
