@@ -24,7 +24,7 @@ import {HttpModule} from '@angular/http';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
-
+import { SweetAlertService } from 'angular-sweetalert-service';
 
 
 @NgModule({
@@ -59,7 +59,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatProgressSpinnerModule,
     AppRouter
   ],
-  providers: [WebServicesService],
+  providers: [WebServicesService, SweetAlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

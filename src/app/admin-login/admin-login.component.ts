@@ -8,7 +8,10 @@ import {Router} from '@angular/router';
   styleUrls: ['./admin-login.component.css']
 })
 export class AdminLoginComponent implements OnInit {
-
+  private data = {
+    email: '',
+    password: ''
+  };
   constructor(private router: Router) { }
 
   ngOnInit() {

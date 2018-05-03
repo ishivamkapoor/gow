@@ -12,6 +12,10 @@ export class WebServicesService {
   private data: any;
   public airportList = [];
   public inProgress = false;
+  private login = {
+    id: '',
+    isAdmin: Boolean
+  };
   constructor(private http: Http) { }
 
   // HTTP REQUEST MAIN FUNCTION TO CALL THE WEBSERVICES EVERY IS ROUTED THROUGH THESE GET POST METHOD
@@ -93,7 +97,6 @@ export class WebServicesService {
       'ClassType': data.ClassType,
       'TripType': data.TripType
     };
-    console.log(JSON.stringify(obj));
     return this.postData(u, obj);
   }
   getAirportList(word) {
@@ -110,5 +113,13 @@ export class WebServicesService {
           console.log('error Occured');
         });
     }
+  }
+  adminLogin(data) {
+    let u = this.BASE_URL + 'SignIn';
+    let obj = {
+      Email: data.email,
+      Password: data.password,
+      LoginType: 'Email'
+    };
   }
 }

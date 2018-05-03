@@ -4,7 +4,8 @@ import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
 import {FormControl} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
-declare var Rx;
+import {SweetAlertService} from 'angular-sweetalert-service';
+declare var Rx, swal;
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -41,7 +42,7 @@ export class DashboardComponent implements OnInit {
      'ClassType': false,
      'TripType': false
    };
-  constructor(private webService: WebServicesService, public snackBar: MatSnackBar) {
+  constructor(private webService: WebServicesService,     private alertService: SweetAlertService, public snackBar: MatSnackBar) {
     this.detail.SourceLoc.valueChanges.debounceTime(500).subscribe((word) => {
       this.webService.getAirportList(word);
     });
@@ -101,11 +102,18 @@ export class DashboardComponent implements OnInit {
       this.errors.Phone = false;
     }
     document.getElementById('closeModalButton').click();
-    console.log(this.detail);
-    this.webService.postInsertTick(this.detail).then((data) => {
-        console.log(data);
+    this.webService.postInsertTick(this.detail).then((data: any) => {
+      if (data && data.Response == 'Success') {
+        swal({
+          title: 'Thank You!',
+          text: 'Your Refrence No is ' + data.ReferenceNo + '. You will be contacted within 24 hours',
+          icon: 'success',
+          button: 'Ok',
+        });
+      }
     });
   }
+
   verifySearchData() {
     if (this.detail.SourceLoc.value == '' || this.detail.SourceLoc.value == null ) {
       this.errors.SourceLoc = true;
