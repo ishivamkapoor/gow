@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import {APP_BASE_HREF} from '@angular/common';
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 
@@ -24,7 +26,7 @@ import {HttpModule} from '@angular/http';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { SweetAlertService } from 'angular-sweetalert-service';
+
 
 
 @NgModule({
@@ -59,7 +61,7 @@ import { SweetAlertService } from 'angular-sweetalert-service';
     MatProgressSpinnerModule,
     AppRouter
   ],
-  providers: [WebServicesService, SweetAlertService],
+  providers: [WebServicesService,{provide: APP_BASE_HREF, useValue: '/'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,8 +4,7 @@ import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
 import {FormControl} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
-import {SweetAlertService} from 'angular-sweetalert-service';
-declare var Rx, swal;
+declare var  swal:any;
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -42,7 +41,7 @@ export class DashboardComponent implements OnInit {
      'ClassType': false,
      'TripType': false
    };
-  constructor(private webService: WebServicesService,     private alertService: SweetAlertService, public snackBar: MatSnackBar) {
+  constructor(public webService: WebServicesService,  public snackBar: MatSnackBar) {
     this.detail.SourceLoc.valueChanges.debounceTime(500).subscribe((word) => {
       this.webService.getAirportList(word);
     });
@@ -117,43 +116,58 @@ export class DashboardComponent implements OnInit {
   verifySearchData() {
     if (this.detail.SourceLoc.value == '' || this.detail.SourceLoc.value == null ) {
       this.errors.SourceLoc = true;
-      this.snackBar.open('Please Enter Source Location', '', {duration: 2000});
+      //this.snackBar.open('', '', {duration: 2000});
+      this.attentionAlert('Please Enter Departure Location');
       return;
     } else {
       this.errors.SourceLoc = false;
     }
     if (this.detail.DestinationLoc.value == '' || this.detail.DestinationLoc.value == null) {
-      this.snackBar.open('Please Enter Destination Location', '', {duration: 2000});
+      // this.snackBar.open('Please Enter Destination Location', '', {duration: 2000});
+      this.attentionAlert('Please Enter Destination Location');
       this.errors.DestinationLoc = true;
       return;
     } else {
       this.errors.DestinationLoc = false;
     }
     if (this.detail.DepartureDate == '' || this.detail.DepartureDate == null) {
-      this.snackBar.open('Please Enter Departure Date', '', {duration: 2000});
+      //this.snackBar.open('Please Enter Departure Date', '', {duration: 2000});
+      this.attentionAlert('Please Enter Departure Date');
       this.errors.DepartureDate = true;
       return;
     } else {
       this.errors.DepartureDate = false;
     }
     if ( this.detail.DepartureDate < this.currentDate) {
-      this.snackBar.open('Please Enter Valid Departure Date', '', {duration: 2000});
+      //this.snackBar.open('Please Enter Valid Departure Date', '', {duration: 2000});
+      this.attentionAlert('Please Enter Valid Departure Date');
       this.errors.DepartureDate = true;
       return;
     } else {
       this.errors.DepartureDate = false;
     }
     if ( this.detail.TripType == 'Round Trip' && this.detail.DepartureDate > this.detail.ReturnDate) {
-      this.snackBar.open('Please Enter Valid Departure and Return Date', '', {duration: 2000});
+      // this.snackBar.open('Please Enter Valid Departure and Return Date', '', {duration: 2000});
+      this.attentionAlert('Please Enter Valid Departure and Return Date');
       this.errors.ReturnDate = true;
       return;
     } else {
       this.errors.ReturnDate = false;
     }
     if (this.detail.Adult == '0' && this.detail.Child == '0' && this.detail.Infant == '0') {
-      this.snackBar.open('Please Enter Valid Number of Passengers', '', {duration: 2000});
+      // this.snackBar.open('Please Enter Valid Number of Passengers', '', {duration: 2000});
+      this.attentionAlert('Please Enter Valid Number of Passengers');
       return;
     }
     document.getElementById('openModalButton').click();
+  }
+  attentionAlert(msg) {
+    swal({
+      title: 'Attention!',
+      text: msg,
+      icon: 'warning',
+      button: 'Ok',
+      timer:1000
+    });
   }
 }

@@ -4,6 +4,8 @@ import {Http, Headers} from '@angular/http';
 
 import 'rxjs/add/operator/map';
 import {HttpHeaders} from '@angular/common/http';
+import {swal} from './dashboard/dashboard.component';
+declare var Rx, swal;
 
 @Injectable()
 export class WebServicesService {
@@ -12,26 +14,36 @@ export class WebServicesService {
   private data: any;
   public airportList = [];
   public inProgress = false;
-  private login = {
+  login = {
     id: '',
-    isAdmin: Boolean
+    isAdmin: false
   };
   constructor(private http: Http) { }
 
+
+  attentionAlert(msg) {
+    swal({
+      title: 'Attention!',
+      text: msg,
+      icon: 'warning',
+      button: 'Ok',
+      timer:2000
+    });
+  }
   // HTTP REQUEST MAIN FUNCTION TO CALL THE WEBSERVICES EVERY IS ROUTED THROUGH THESE GET POST METHOD
 
   getData(u) {
     this.inProgress = true;
     return new Promise(resolve => {
-      setTimeout(() => {
-        this.inProgress = false;
-      }, 1000);
+
       this.http.get(u)
         .map(res => res.json())
         .subscribe(data => {
+          this.inProgress = false;
           this.data = data;
           resolve(this.data);
         }, err => {
+          this.inProgress = false;
           console.log('error Occured');
           // this.presentToast('Please Check Internet Connection or Try Again Later!');
           resolve(false);
@@ -44,9 +56,7 @@ export class WebServicesService {
     headers.append('Content-Type', 'application/json');
     this.inProgress = true;
     return new Promise(resolve => {
-      setTimeout(() => {
-        this.inProgress = false;
-      }, 1000);
+
       this.http.post(u,
         data
         ,
@@ -55,9 +65,11 @@ export class WebServicesService {
         })
         .map(res => res.json())
         .subscribe((data: any) => {
+          this.inProgress = false;
           this.data = data;
           resolve(this.data);
         }, err => {
+          this.inProgress = false;
           console.log('error Occured');
 
           // this.presentToast('Please Check Internet Connection or Try Again Later!');
@@ -101,12 +113,13 @@ export class WebServicesService {
   }
   getAirportList(word) {
     console.log(word);
-    const u = 'http://www.flightsservices.com/general/get_flight_suggestions';
+    const u = 'http://ijuju.aprosoftech.com/api/ijuju/GetAirportList';
     if (word != '' && word.length > 2) {
-      this.http.get(u)
+
+      this.http.post(u,{})
         .map(res => res.json())
         .subscribe(list => {
-          this.airportList = list.filter((port) => {
+          this.airportList = list.List.filter((port) => {
             return port.label.toLowerCase().indexOf(word.toLowerCase()) > -1;
           });
         }, err => {
@@ -121,5 +134,7 @@ export class WebServicesService {
       Password: data.password,
       LoginType: 'Email'
     };
+    return this.postData(u,obj);
   }
+
 }

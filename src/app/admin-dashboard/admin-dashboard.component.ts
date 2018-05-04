@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {WebServicesService} from '../web-services.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private webService: WebServicesService, private router: Router) { }
 
   ngOnInit() {
+    if (!this.webService.login.isAdmin) {
+      this.webService.attentionAlert('Please Login First');
+      this.router.navigateByUrl('/admin');
+    }
   }
 
 }

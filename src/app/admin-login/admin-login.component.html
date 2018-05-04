@@ -14,12 +14,14 @@
                 <div class="form-group">
                   <label for="uname1">Username</label>
                   <input type="text" [(ngModel)]="data.email"  class="form-control form-control-lg rounded-0" name="uname1" id="uname1" required="">
-                  <div class="invalid-feedback">Oops, you missed this one.</div>
+                  <small *ngIf="errors.email" class="form-text text-danger">{{errorMsg}}</small>
+
                 </div>
                 <div class="form-group">
                   <label>Password</label>
                   <input type="password" [(ngModel)]="data.password" class="form-control form-control-lg rounded-0" id="pwd1" required="" autocomplete="new-password">
-                  <div class="invalid-feedback">Enter your password too!</div>
+                  <small *ngIf="errors.password" class="form-text text-danger">{{errorMsg}}</small>
+
                 </div>
                 <!--<div>-->
                   <!--<label class="custom-control custom-checkbox">-->
@@ -28,7 +30,8 @@
                     <!--<span class="custom-control-description small text-dark">Remember me on this computer</span>-->
                   <!--</label>-->
                 <!--</div>-->
-                <button type="submit" class="btn btn-success btn-lg float-right" (click)="openDash()" id="btnLogin">Login</button>
+
+                <button type="submit" class="btn btn-success btn-lg float-right" (click)="postlogin()" id="btnLogin">Login</button>
 
             </div>
             <!--/card-block-->
