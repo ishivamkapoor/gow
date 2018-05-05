@@ -170,4 +170,7 @@ export class DashboardComponent implements OnInit {
       timer:1000
     });
   }
+  clearAirports(){
+    this.webService.airportList=[];
+  }
 }

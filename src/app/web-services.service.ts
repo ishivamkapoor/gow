@@ -4,7 +4,7 @@ import {Http, Headers} from '@angular/http';
 
 import 'rxjs/add/operator/map';
 import {HttpHeaders} from '@angular/common/http';
-import {swal} from './dashboard/dashboard.component';
+
 declare var Rx, swal;
 
 @Injectable()
