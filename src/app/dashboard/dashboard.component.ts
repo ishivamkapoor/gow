@@ -105,10 +105,11 @@ export class DashboardComponent implements OnInit {
       if (data && data.Response == 'Success') {
         swal({
           title: 'Thank You!',
-          text: 'Your Refrence No is ' + data.ReferenceNo + '. You will be contacted within 24 hours',
-          icon: 'success',
+          html: 'Your Refrence No is <label style="font-weight: 200"><b>' + data.ReferenceNo + '</b></label>. You will be contacted shortly',
+          type: 'success',
           button: 'Ok',
         });
+        this.clearData();
       }
     });
   }
@@ -165,12 +166,28 @@ export class DashboardComponent implements OnInit {
     swal({
       title: 'Attention!',
       text: msg,
-      icon: 'warning',
+      type: 'warning',
       button: 'Ok',
       timer:1000
     });
   }
   clearAirports(){
     this.webService.airportList=[];
+  }
+  clearData(){
+    this.detail = {
+      'Name': new FormControl(),
+      'Email': new FormControl(),
+      'Phone': new FormControl(),
+      'SourceLoc':  new FormControl(),
+      'DestinationLoc':   new FormControl(),
+      'DepartureDate': new Date(),
+      'ReturnDate': new Date(),
+      'Adult': '0',
+      'Child': '0',
+      'Infant': '0',
+      'ClassType': 'All',
+      'TripType': 'One Way'
+    };
   }
 }

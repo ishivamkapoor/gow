@@ -7,65 +7,104 @@
     </div>
     <div class="col-sm-10 main">
       <br>
-      <div class="card card-list-hg">
+      <div class="card ">
       <div class="card-header">Enquiries</div>
-      <div class="card-body">
+      <div class="card-body ">
         <div class="row ">
           <div class="col-sm-4">&nbsp;Refrence No:</div>
           <div class="col-sm-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Query Date(Status)</div>
         </div>
         <hr>
-        <mat-expansion-panel>
+        <div class="card-list-hg">
+        <!--Adult: 1-->
+        <!--​​​-->
+        <!--Child: 0-->
+        <!--​​​-->
+        <!--ClassType: "Business"-->
+        <!--​​​-->
+        <!--DepartureDate: "2018-05-06T05:00:54.447"-->
+        <!--​​​-->
+        <!--DestinationLocation: "Perth, Australia"-->
+        <!--​​​-->
+        <!--Email: "er.rajnarayan@gmail.com"-->
+        <!--​​​-->
+        <!--ExecutiveRemarks: "Customer is willing to buy ticket but he wants to do some more market research"-->
+        <!--​​​-->
+        <!--ExecutiveRemarksEntryDate: "2018-04-26T05:20:47.95"-->
+        <!--​​​-->
+        <!--Id: 1-->
+        <!--​​​-->
+        <!--Infant: 0-->
+        <!--​​​-->
+        <!--IsConvinced: "Maybe"-->
+        <!--​​​-->
+        <!--Name: "Raj"-->
+        <!--​​​-->
+        <!--Phone: "8283832639"-->
+        <!--​​​-->
+        <!--QueryEntryDate: "2018-04-26T05:13:16.813"-->
+        <!--​​​-->
+        <!--QueryStatus: "C"-->
+        <!--​​​-->
+        <!--ReferenceNo: "GOW20184261"-->
+        <!--​​​-->
+        <!--ReturnDate: "2018-05-09T05:00:54.447"-->
+        <!--​​​-->
+        <!--SourceLocation: "IGT, Delhi"-->
+        <mat-expansion-panel *ngFor="let query of queryList">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              GOW20184261
+              {{query.ReferenceNo}}
             </mat-panel-title>
             <mat-panel-description>
-              <strong>1/04/2018 (Pending)</strong>
+              <strong>{{query.QueryEntryDate | date:'dd/MM/yyyy'}} ( <label class="text-success" *ngIf="query.QueryStatus=='C'">Completed</label><label class="text-danger" *ngIf="query.QueryStatus=='P'">Pending</label> )</strong>
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div class="row">
             <div class="col-sm-3">
               <label><strong>Name :</strong></label>
-              <label>Shivam Kapoor</label>
+              <label>{{query.Name}}</label>
               <br>
               <label><strong>Email :</strong></label>
-              <label>Shivam Kapoor</label>
+              <label>{{query.Email}}</label>
               <br>
               <label><strong>Phone No.:</strong></label>
-              <label>Shivam Kapoor</label>
+              <label>{{query.Phone}}</label>
+              <br>
+              <label><strong>Trip Type.:</strong></label>
+              <label>{{query.TripType}}</label>
               <br>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-5">
               <label><strong>Departure From:</strong></label>
-              <label></label>
+              <label>{{query.SourceLocation}}</label>
               <br>
               <label><strong>Destination :</strong></label>
-              <label></label>
+              <label>{{query.DestinationLocation}}</label>
               <br>
               <label><strong>Departure Date:</strong></label>
-              <label></label>
+              <label>{{query.DepartureDate | date:'dd/MM/yyyy'}}</label>
               <br>
               <label><strong>Return Date :</strong></label>
-              <label></label>
+              <label>{{query.ReturnDate | date:'dd/MM/yyyy'}}</label>
               <br>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-1">
               <label><strong>Adult :</strong></label>
-              <label></label>
+              <label>{{query.Adult}}</label>
               <br>
               <label><strong>Child :</strong></label>
-              <label></label>
+              <label>{{query.Child}}</label>
               <br>
               <label><strong>Infant :</strong></label>
-              <label></label>
+              <label>{{query.Infant}}</label>
               <br>
               <label><strong>Class :</strong></label>
-              <label></label>
+              <label>{{query.ClassType}}</label>
               <br>
             </div>
             <div class="col-sm-3">
-              <button style="position: absolute;bottom: 0;right: 0" class="btn btn-primary">Edit</button>
+              <button style="position: absolute;bottom: 0;right: 0" (click)="openRemarks(query)" class="btn btn-primary">Remarks</button>
             </div>
           </div>
           <div class="row">
@@ -75,7 +114,10 @@
           </div>
         </mat-expansion-panel>
 
+        </div>
+        <div class="row">
 
+        </div>
       </div>
     </div>
 

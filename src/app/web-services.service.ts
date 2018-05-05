@@ -25,9 +25,9 @@ export class WebServicesService {
     swal({
       title: 'Attention!',
       text: msg,
-      icon: 'warning',
+      type: 'warning',
       button: 'Ok',
-      timer:2000
+      timer: 2000
     });
   }
   // HTTP REQUEST MAIN FUNCTION TO CALL THE WEBSERVICES EVERY IS ROUTED THROUGH THESE GET POST METHOD
@@ -116,25 +116,31 @@ export class WebServicesService {
     const u = 'http://ijuju.aprosoftech.com/api/ijuju/GetAirportList';
     if (word != '' && word.length > 2) {
 
-      this.http.post(u,{})
+      this.http.post(u, {searchText: word})
         .map(res => res.json())
         .subscribe(list => {
-          this.airportList = list.List.filter((port) => {
-            return port.label.toLowerCase().indexOf(word.toLowerCase()) > -1;
-          });
+          console.log(list);
+          this.airportList = list.List;
+          // this.airportList = list.List.filter((port) => {
+          //   return port.label.toLowerCase().indexOf(word.toLowerCase()) > -1;
+          // });
         }, err => {
           console.log('error Occured');
         });
     }
   }
   adminLogin(data) {
-    let u = this.BASE_URL + 'SignIn';
-    let obj = {
+    const u = this.BASE_URL + 'SignIn';
+    const obj = {
       Email: data.email,
       Password: data.password,
       LoginType: 'Email'
     };
-    return this.postData(u,obj);
+    return this.postData(u, obj);
+  }
+  getTicketQueries(word) {
+      let u = this.BASE_URL + 'GetTicketBookingQueries';
+      return this.postData(u,  word);
   }
 
 }

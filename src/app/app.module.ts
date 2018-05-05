@@ -19,13 +19,17 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {AppRouter} from './app.router';
-import {DateAdapter, MatExpansionModule, MatIconModule, MatListModule, MatNativeDateModule, MatSnackBarModule} from '@angular/material';
+import {
+  DateAdapter, MatDialogModule, MatExpansionModule, MatIconModule, MatListModule, MatNativeDateModule,
+  MatSnackBarModule
+} from '@angular/material';
 import {WebServicesService} from './web-services.service';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { RemarksDialogComponent } from './remarks-dialog/remarks-dialog.component';
 
 
 
@@ -38,7 +42,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     RegisterComponent,
     LoginComponent,
     AdminLoginComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    RemarksDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatDialogModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatIconModule,
@@ -62,6 +68,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     AppRouter
   ],
   providers: [WebServicesService,{provide: APP_BASE_HREF, useValue: '/'}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[RemarksDialogComponent]
 })
 export class AppModule { }
