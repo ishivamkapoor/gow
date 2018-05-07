@@ -13,45 +13,19 @@
         <div class="row ">
           <div class="col-sm-4">&nbsp;Refrence No:</div>
           <div class="col-sm-4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Query Date(Status)</div>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <input type="text" (keydown)="onEnter($event)" [(ngModel)]="request.searchText" placeholder="Search..." class="form-control "/>
+              <div class="input-group-append bg-white" >
+                <button (click)="getTicketQueries(request)"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+
+          </div>
         </div>
         <hr>
         <div class="card-list-hg">
-        <!--Adult: 1-->
-        <!--​​​-->
-        <!--Child: 0-->
-        <!--​​​-->
-        <!--ClassType: "Business"-->
-        <!--​​​-->
-        <!--DepartureDate: "2018-05-06T05:00:54.447"-->
-        <!--​​​-->
-        <!--DestinationLocation: "Perth, Australia"-->
-        <!--​​​-->
-        <!--Email: "er.rajnarayan@gmail.com"-->
-        <!--​​​-->
-        <!--ExecutiveRemarks: "Customer is willing to buy ticket but he wants to do some more market research"-->
-        <!--​​​-->
-        <!--ExecutiveRemarksEntryDate: "2018-04-26T05:20:47.95"-->
-        <!--​​​-->
-        <!--Id: 1-->
-        <!--​​​-->
-        <!--Infant: 0-->
-        <!--​​​-->
-        <!--IsConvinced: "Maybe"-->
-        <!--​​​-->
-        <!--Name: "Raj"-->
-        <!--​​​-->
-        <!--Phone: "8283832639"-->
-        <!--​​​-->
-        <!--QueryEntryDate: "2018-04-26T05:13:16.813"-->
-        <!--​​​-->
-        <!--QueryStatus: "C"-->
-        <!--​​​-->
-        <!--ReferenceNo: "GOW20184261"-->
-        <!--​​​-->
-        <!--ReturnDate: "2018-05-09T05:00:54.447"-->
-        <!--​​​-->
-        <!--SourceLocation: "IGT, Delhi"-->
-        <mat-expansion-panel *ngFor="let query of queryList">
+          <mat-expansion-panel *ngFor="let query of queryList">
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{query.ReferenceNo}}
@@ -75,7 +49,7 @@
               <label>{{query.TripType}}</label>
               <br>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-6">
               <label><strong>Departure From:</strong></label>
               <label>{{query.SourceLocation}}</label>
               <br>
@@ -89,7 +63,7 @@
               <label>{{query.ReturnDate | date:'dd/MM/yyyy'}}</label>
               <br>
             </div>
-            <div class="col-sm-1">
+            <div class="col-sm-2">
               <label><strong>Adult :</strong></label>
               <label>{{query.Adult}}</label>
               <br>
@@ -103,20 +77,25 @@
               <label>{{query.ClassType}}</label>
               <br>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-1" *ngIf="query.QueryStatus=='P'">
               <button style="position: absolute;bottom: 0;right: 0" (click)="openRemarks(query)" class="btn btn-primary">Remarks</button>
             </div>
           </div>
-          <div class="row">
+          <div class="row" *ngIf="query.QueryStatus=='C'">
             <div class="col-sm-12">
-              <strong>Executive Remarks :</strong>
+              <span><strong>Executive Remarks({{query.ExecutiveRemarksEntryDate | date:'dd/MM/yyyy'}}) :</strong></span>
+              <span>{{query.ExecutiveRemarks}}</span>
+
             </div>
           </div>
         </mat-expansion-panel>
-
         </div>
         <div class="row">
-
+          <mat-paginator [length]="totalRecords"
+                         [pageSize]="queryList.length"
+                         (page)="nextRecords()"
+                         >
+          </mat-paginator>
         </div>
       </div>
     </div>

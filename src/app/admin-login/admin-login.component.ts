@@ -46,17 +46,17 @@ export class AdminLoginComponent implements OnInit {
       this.errors.password = false;
     }
 
-    this.webService.adminLogin(this.data).then((data:any) => {
+    this.webService.adminLogin(this.data).then((data: any) => {
         if (data ) {
           if (data.Response == 'Success') {
             this.webService.login.id = this.data.email;
             this.webService.login.isAdmin = true;
             this.openDash();
           } else {
-            this.webService.attentionAlert('Invalid Email or Password');
+            this.webService.attentionAlert('Attention', 'Invalid Email or Password', 'warning');
           }
         } else {
-          this.webService.attentionAlert('Something Went Wrong!try again later');
+          this.webService.attentionAlert('Attention', 'Something Went Wrong!try again later', 'warning');
         }
     });
   }

@@ -21,11 +21,11 @@ export class WebServicesService {
   constructor(private http: Http) { }
 
 
-  attentionAlert(msg) {
+  attentionAlert(title,msg,type) {
     swal({
-      title: 'Attention!',
+      title: title,
       text: msg,
-      type: 'warning',
+      type: type,
       button: 'Ok',
       timer: 2000
     });
@@ -139,8 +139,12 @@ export class WebServicesService {
     return this.postData(u, obj);
   }
   getTicketQueries(word) {
-      let u = this.BASE_URL + 'GetTicketBookingQueries';
+      const u = this.BASE_URL + 'GetTicketBookingQueries';
       return this.postData(u,  word);
+  }
+  postExecutiveRemarks(data) {
+    const u = this.BASE_URL + 'UpdateExecutiveRemarks';
+    return this.postData(u, data);
   }
 
 }

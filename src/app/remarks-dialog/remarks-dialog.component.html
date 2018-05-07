@@ -1,12 +1,13 @@
 <div class="card ">
-  <div class="card-header">Remarks Form</div>
+  <div class="card-header text-center">Remarks Form</div>
   <div class="card-body ">
     <div class="form-group">
-      <textarea class="form-control  form-control-lg" placeholder="Enter Remerks"></textarea>
+      <textarea [(ngModel)]="sendResponse.ExecutiveRemarks" class="form-control  form-control-lg" placeholder="Enter Remerks"></textarea>
+      <small *ngIf="errors.ExecutiveRemarks" class="form-text text-danger">Please fill Executive Remarks.</small>
     </div>
     <label><b>Client Interested ? </b></label>
     <br>
-    <mat-radio-group >
+    <mat-radio-group [(ngModel)]="sendResponse.IsAgree" >
       <mat-radio-button color="primary" value="Yes">Yes</mat-radio-button>
       &nbsp;&nbsp;&nbsp;
       <mat-radio-button color="primary" value="No">No</mat-radio-button>
@@ -14,6 +15,10 @@
       <mat-radio-button color="primary" value="May Be">May Be</mat-radio-button>
       <!--<mat-radio-button color="primary" value="Multi City"><span style="color: white" >Multi City</span></mat-radio-button>-->
     </mat-radio-group>
+    <br>
+    <div class="row">
+      <button (click)="saveResponse()" class="form-control btn btn-primary">Save</button>
+    </div>
   </div>
 </div>
 

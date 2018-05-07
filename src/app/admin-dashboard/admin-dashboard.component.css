@@ -9,6 +9,6 @@
   height: 100%;
 }
 .card-list-hg{
-  height: 50vh;
-  overflow: scroll;
+  height: 45vh;
+  overflow-y: scroll;
 }

@@ -20,7 +20,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {AppRouter} from './app.router';
 import {
-  DateAdapter, MatDialogModule, MatExpansionModule, MatIconModule, MatListModule, MatNativeDateModule,
+  DateAdapter, MatDialogModule, MatExpansionModule, MatIconModule, MatListModule, MatNativeDateModule, MatPaginatorModule,
   MatSnackBarModule
 } from '@angular/material';
 import {WebServicesService} from './web-services.service';
@@ -58,6 +58,7 @@ import { RemarksDialogComponent } from './remarks-dialog/remarks-dialog.componen
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatPaginatorModule,
     MatExpansionModule,
     MatNativeDateModule,
     MatAutocompleteModule,
