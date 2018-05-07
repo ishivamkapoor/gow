@@ -139,7 +139,9 @@ export class DashboardComponent implements OnInit {
     } else {
       this.errors.DepartureDate = false;
     }
-    if ( this.detail.DepartureDate < this.currentDate) {
+    console.log(this.detail.DepartureDate.toDateString() === this.currentDate.toDateString());
+
+    if (this.currentDate.toDateString() > this.detail.DepartureDate.toDateString() ) {
       //this.snackBar.open('Please Enter Valid Departure Date', '', {duration: 2000});
       this.attentionAlert('Please Enter Valid Departure Date');
       this.errors.DepartureDate = true;

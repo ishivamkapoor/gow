@@ -11,22 +11,24 @@
 .bgimg-1 {
   background-image: url("assets/wallpaper/w3.jpeg");
   min-height: 500px;
+  padding: 5%;
 }
 
 .bgimg-2 {
   background-image: url("assets/wallpaper/w2.jpg");
   min-height: 500px;
+  padding: 5%;
 }
 
 .bgimg-3 {
   background-image: url("assets/wallpaper/w1.jpg");
   min-height: 400px;
+  padding: 5%;
 }
 
 .caption {
-  position: absolute;
+
   left: 0;
-  top: 30%;
   width: 100%;
   color: #000;
 }

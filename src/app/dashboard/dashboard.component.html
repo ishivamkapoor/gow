@@ -15,6 +15,7 @@
       <form>
       <div class="row">
          <div class="col-md-4">
+           <p>&nbsp;</p>
            <div class="input-group">
              <div class="input-group-prepend">
                <span class="input-group-text" ><i class="fas fa-map-marker"></i></span>
@@ -28,6 +29,7 @@
            </div>
          </div>
         <div class="col-md-4">
+          <p>&nbsp;</p>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text" ><i class="fas fa-map-marker"></i></span>
@@ -41,6 +43,7 @@
           </div>
         </div>
         <div class="col-md-2">
+          <p>&nbsp;</p>
           <div class="input-group">
 
             <input class="form-control form-control-lg" name="departureDate" [(ngModel)]="detail.DepartureDate" [matDatepicker]="myDatepicker">
@@ -51,6 +54,7 @@
           </div>
         </div>
         <div class="col-sm-2" *ngIf="detail.TripType=='Round Trip'">
+          <p>&nbsp;</p>
           <div class="input-group">
             <input class="form-control form-control-lg" [disabled]="detail.TripType!='Round Trip'" name="returnDate" [(ngModel)]="detail.ReturnDate" [matDatepicker]="myDatepicker2">
             <div class="input-group-append bg-white" >
@@ -134,7 +138,7 @@
   </div>
 </div>
 
-<div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+<div style="color: #777;background-color:white;text-align:center;padding:5vh 8vw;text-align: justify;">
   <h3 style="text-align:center;">GlOBE ON WINGS</h3>
   <P>A brand new online travel service provider which has come forward with the
     only aim to give the customers an outstanding experience to travel around the globe and explore the
@@ -275,7 +279,7 @@
 
       <div class="modal-footer">
         <!--<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>-->
-        <p class="font-weight-light">Please Enter your Contact Detail our Representative will contact you within 24 hours</p>
+        <p class="font-weight-light">Please Enter your Contact Detail </p>
       </div>
 
     </div>
