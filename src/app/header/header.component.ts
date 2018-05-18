@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material';
+import {LoginComponent} from '../login/login.component';
+
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor( public dialog: MatDialog) { }
 
   ngOnInit() {
   }
-
+  openLogin(obj) {
+    const dialogRemarks = this.dialog.open(LoginComponent, { width: '500px');
+    dialogRemarks.afterClosed().subscribe((result) => {
+      if (result) {
+        // this.webService.attentionAlert('Saved Successfully', 'Executive Remarks has been saved Successfully', 'success');
+      }
+    });
+  }
 }

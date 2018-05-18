@@ -4,13 +4,24 @@ import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
 import {FormControl} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
-declare var  swal:any;
+import {state, style, trigger,transition,animate} from '@angular/animations';
+declare var  swal: any;
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  animations: [
+    trigger('bgChange', [
+      state('0', style({'background-image': "url('assets/wallpaper/w3.jpeg')" })),
+      state('1', style({'background-image': "url('assets/wallpaper/w2.jpg') "})),
+      state('2', style({'background-image': "url('assets/wallpaper/w1.jpg') "})),
+      transition('* => *', animate('600ms 0.2ms ease-in-out'))
+    ])
+  ]
+
 })
 export class DashboardComponent implements OnInit {
+  bgwall:Number=0;
   private currentDate = new Date();
   private input = document.getElementById('textInput');
    detail: any = {
@@ -21,7 +32,7 @@ export class DashboardComponent implements OnInit {
     'DestinationLoc':   new FormControl(),
     'DepartureDate': new Date(),
     'ReturnDate': new Date(),
-    'Adult': '0',
+    'Adult': '1',
     'Child': '0',
     'Infant': '0',
     'ClassType': 'All',
@@ -48,6 +59,10 @@ export class DashboardComponent implements OnInit {
     this.detail.DestinationLoc.valueChanges.debounceTime(500).subscribe((word) => {
       this.webService.getAirportList(word);
     });
+
+    setInterval(()=>{
+      this.bgwall=((Math.floor((Math.random() * 10) + 1))%3);
+    },6000);
   }
 
   ngOnInit() {
@@ -139,9 +154,7 @@ export class DashboardComponent implements OnInit {
     } else {
       this.errors.DepartureDate = false;
     }
-    console.log(this.detail.DepartureDate.toDateString() === this.currentDate.toDateString());
-
-    if (this.currentDate.toDateString() > this.detail.DepartureDate.toDateString() ) {
+    if ( this.detail.DepartureDate < this.currentDate) {
       //this.snackBar.open('Please Enter Valid Departure Date', '', {duration: 2000});
       this.attentionAlert('Please Enter Valid Departure Date');
       this.errors.DepartureDate = true;
@@ -170,13 +183,13 @@ export class DashboardComponent implements OnInit {
       text: msg,
       type: 'warning',
       button: 'Ok',
-      timer:1000
+      timer: 1000
     });
   }
-  clearAirports(){
-    this.webService.airportList=[];
+  clearAirports() {
+    this.webService.airportList = [];
   }
-  clearData(){
+  clearData() {
     this.detail = {
       'Name': new FormControl(),
       'Email': new FormControl(),

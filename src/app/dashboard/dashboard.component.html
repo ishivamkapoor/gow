@@ -1,5 +1,5 @@
 
-<div class="bgimg-1">
+<div class="bgimg-1" [@bgChange]="bgwall">
   <div class="caption">
     <div class="container" style="min-width: 90%">
       <div class="row">
@@ -68,7 +68,7 @@
       <br>
       <div class="row">
         <div class="col-md-2">
-          <p><span style="color: white" >Adult</span></p>
+          <p><span class="sub-heading" style="color: white" >Adult</span></p>
           <div class="input-group ">
             <div class="input-group-prepend bg-white">
               <button class="btn btn-outline-secondary" (click)="adults(false)" type="button">
@@ -84,7 +84,7 @@
           </div>
         </div>
         <div class="col-md-2">
-          <p><span style="color: white" >Child</span></p>
+          <p><span class="sub-heading" style="color: white" >Child</span></p>
           <div class="input-group ">
             <div class="input-group-prepend bg-white">
               <button class="btn btn-outline-secondary" (click)="child(false)" type="button">
@@ -100,7 +100,7 @@
           </div>
         </div>
         <div class="col-md-2">
-          <p><span style="color: white" >Infants</span></p>
+          <p><span class="sub-heading" style="color: white" >Infants</span></p>
           <div class="input-group ">
             <div class="input-group-prepend bg-white">
               <button class="btn btn-outline-secondary" (click)="infant(false)" type="button">
@@ -116,7 +116,7 @@
           </div>
         </div>
         <div class="col-md-2">
-          <p><span style="color: white" >Class</span></p>
+          <p><span class="sub-heading" style="color: white" >Class</span></p>
           <div class="form-group">
             <select [(ngModel)]="detail.ClassType" class="form-control form-control-lg" id="sel1">
               <option >All</option>
@@ -130,7 +130,7 @@
         <div class="col-md-2">
           <p>&nbsp;</p>
           <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#myModal">Open Modal</button>
-          <button type="button" style="width: 100%" (click)="verifySearchData()" class="btn btn-primary btn-lg">SEARCH</button>
+          <button type="button" style="margin-top:5px;width: 100%" (click)="verifySearchData()" class="btn btn-primary btn-lg">SEARCH</button>
           <!--<button type="button" style="width: 100%" class="btn btn-lg  btn-primary">Search</button>-->
         </div>
       </div>
@@ -138,7 +138,7 @@
   </div>
 </div>
 
-<div style="color: #777;background-color:white;text-align:center;padding:5vh 8vw;text-align: justify;">
+<div style="color: #777;background-color:white;text-align:center;padding: 10px 5%;text-align: justify;">
   <h3 style="text-align:center;">GlOBE ON WINGS</h3>
   <P>A brand new online travel service provider which has come forward with the
     only aim to give the customers an outstanding experience to travel around the globe and explore the
@@ -155,9 +155,9 @@
     phase of their journey.</P>
 </div>
 
-<div class="bgimg-2">
-  <div class="caption">
-  <div class="container">
+<div class="bgimg-2" style="display: table">
+  <div class="caption" style="display: table-cell;vertical-align: middle">
+  <div class="container" >
       <div class="row ">
         <div class="col-md-4 full_mobile bestPrieguara">
           <div class="bestpriimg">
@@ -275,13 +275,10 @@
           <button type="button" (click)="postTicketDetails()" class="btn col-sm-6 btn-primary btn-lg" >Save</button>
         </div>
       </div>
-
-
       <div class="modal-footer">
         <!--<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>-->
-        <p class="font-weight-light">Please Enter your Contact Detail </p>
+        <p class="font-weight-light">Please Enter your Contact Detail our Representative will contact you within 24 hours</p>
       </div>
-
     </div>
   </div>
 </div>

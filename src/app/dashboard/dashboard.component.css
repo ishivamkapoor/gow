@@ -1,6 +1,8 @@
-
 .bgimg-1, .bgimg-2, .bgimg-3 {
   position: relative;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  width: 100%;
   opacity: 1 ;
   background-attachment: fixed;
   background-position: center;
@@ -11,24 +13,20 @@
 .bgimg-1 {
   background-image: url("assets/wallpaper/w3.jpeg");
   min-height: 500px;
-  padding: 5%;
 }
 
 .bgimg-2 {
   background-image: url("assets/wallpaper/w2.jpg");
   min-height: 500px;
-  padding: 5%;
 }
 
 .bgimg-3 {
   background-image: url("assets/wallpaper/w1.jpg");
   min-height: 400px;
-  padding: 5%;
 }
 
 .caption {
-
-  left: 0;
+  vertical-align: middle;
   width: 100%;
   color: #000;
 }
@@ -71,4 +69,7 @@ h3 {
 .custsuprt {
   background: #ff4e00;
   padding: 25px 15px;
+}
+.sub-heading{
+  font-size: 20px;
 }
