@@ -14,12 +14,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-  openLogin(obj) {
-    const dialogRemarks = this.dialog.open(LoginComponent, { width: '500px');
-    dialogRemarks.afterClosed().subscribe((result) => {
-      if (result) {
-        // this.webService.attentionAlert('Saved Successfully', 'Executive Remarks has been saved Successfully', 'success');
-      }
+  openLogin() {
+    const dialogRemarks = this.dialog.open(LoginComponent, { width: '500px'});
+    dialogRemarks.afterClosed().subscribe(() => {
+      // if (result) {
+      //   // this.webService.attentionAlert('Saved Successfully', 'Executive Remarks has been saved Successfully', 'success');
+      // }
     });
   }
 }
