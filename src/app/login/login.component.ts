@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {WebServicesService} from '../web-services.service';
+import {AuthService} from 'angular2-social-login';
 
 @Component({
   selector: 'app-login',
@@ -7,6 +8,7 @@ import {WebServicesService} from '../web-services.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  sub: any;
   errorMsg = '';
   data = {
     email: '',
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit {
     email: false,
     password: false
   };
-  constructor(private webService: WebServicesService) { }
+  constructor(private webService: WebServicesService, public _auth: AuthService) { }
 
   ngOnInit() {
   }
@@ -53,4 +55,12 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+  signIn(provider) {
+    this.sub = this._auth.login(provider).subscribe(
+      (data) => {
+        console.log(data);
+        //user data
+        //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google)
+      }
+    ); }
 }

@@ -1,0 +1,17 @@
+.login-img{
+  width: 20vw;
+  min-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.or{
+  margin-top: -25px;
+}
+/deep/.mat-tab-label, /deep/.mat-tab-label-active{
+  min-width: 48%!important;
+  margin-left: 1%;
+  margin-right:  1%;
+}
+.hg{
+  min-height: 550px;
+}

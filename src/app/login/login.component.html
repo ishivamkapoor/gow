@@ -1,30 +1,74 @@
-<div class="card rounded-0">
-  <div class="card-header">
-    <h3 class="mb-0">Login</h3>
-  </div>
-  <div class="card-body">
-    <div class="form-group">
-      <label for="uname1">Username</label>
-      <input type="text" [(ngModel)]="data.email"  class="form-control form-control-lg rounded-0" name="uname1" id="uname1" required="">
-      <small *ngIf="errors.email" class="form-text text-danger">{{errorMsg}}</small>
+<mat-tab-group>
+  <mat-tab label="Login">
+    <div class="card rounded-0 hg">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="uname1">Email</label>
+          <input type="text" [(ngModel)]="data.email"  class="form-control form-control-lg rounded-0" name="uname1" id="uname1" required="">
+          <small *ngIf="errors.email" class="form-text text-danger">{{errorMsg}}</small>
 
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" [(ngModel)]="data.password" class="form-control form-control-lg rounded-0" id="pwd1" required="" autocomplete="new-password">
+          <small *ngIf="errors.password" class="form-text text-danger">{{errorMsg}}</small>
+        </div>
+        <br>
+        <div class="form-group text-center">
+          <button type="submit" class="btn btn-lg btn-primary" style="width: 100%" (click)="postlogin()" id="btnLogin">Login</button>
+        </div>
+        <hr>
+        <h6 class="or text-center">OR</h6>
+        <div class="form-group text-center">
+          <a routerLink="/" (click)="signIn('facebook')">
+            <img src="assets/login-fb.png" class="login-img">
+          </a>
+        </div>
+        <div class="form-group text-center">
+          <a routerLink="/" (click)="signIn('google')">
+            <img src="assets/login-google.png" class="login-img">
+          </a>
+        </div>
+      </div>
+      <!--/card-block-->
     </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" [(ngModel)]="data.password" class="form-control form-control-lg rounded-0" id="pwd1" required="" autocomplete="new-password">
-      <small *ngIf="errors.password" class="form-text text-danger">{{errorMsg}}</small>
-
+  </mat-tab>
+  <mat-tab label="Sign Up">
+    <div class="card rounded-0 hg">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="uname1">Name</label>
+          <input type="text" [(ngModel)]="data.email"  class="form-control form-control-lg rounded-0" name="uname1" id="uname1" required="">
+          <small *ngIf="errors.email" class="form-text text-danger">{{errorMsg}}</small>
+        </div>
+        <div class="form-group">
+          <label for="uname1">Email</label>
+          <input type="text" [(ngModel)]="data.email"  class="form-control form-control-lg rounded-0" name="uname1" id="uname1" required="">
+          <small *ngIf="errors.email" class="form-text text-danger">{{errorMsg}}</small>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" [(ngModel)]="data.password" class="form-control form-control-lg rounded-0" id="pwd1" required="" autocomplete="new-password">
+          <small *ngIf="errors.password" class="form-text text-danger">{{errorMsg}}</small>
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input type="password" [(ngModel)]="data.password" class="form-control form-control-lg rounded-0" id="pwd1" required="" autocomplete="new-password">
+          <small *ngIf="errors.password" class="form-text text-danger">{{errorMsg}}</small>
+        </div>
+        <div class="form-group">
+            <div style="float: left;margin-right: 10px">
+              <input   type="checkbox"/>
+            </div>
+          <span>
+            By signing up,I agree to the Terms of Service and Privacy Policy
+          </span>
+        </div>
+        <div class="form-group text-center">
+          <button type="submit" class="btn btn-lg btn-primary" style="width: 100%" >Sign Up</button>
+        </div>
+      </div>
+      <!--/card-block-->
     </div>
-    <!--<div>-->
-    <!--<label class="custom-control custom-checkbox">-->
-    <!--<input type="checkbox" class="custom-control-input">-->
-    <!--<span class="custom-control-indicator"></span>-->
-    <!--<span class="custom-control-description small text-dark">Remember me on this computer</span>-->
-    <!--</label>-->
-    <!--</div>-->
-
-    <button type="submit" class="btn btn-primary btn-lg float-right" (click)="postlogin()" id="btnLogin">Login</button>
-
-  </div>
-  <!--/card-block-->
-</div>
+  </mat-tab>
+</mat-tab-group>
