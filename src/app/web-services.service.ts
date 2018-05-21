@@ -11,17 +11,25 @@ declare var Rx, swal;
 export class WebServicesService {
 
   private BASE_URL = 'http://ijuju.aprosoftech.com/api/ijuju/';
+  private MAIN_URL = 'http://admin.globeonwings.com/Api/globeOnWings/';
   private data: any;
   public airportList = [];
   public inProgress = false;
   login = {
     id: '',
+    token:'',
     isAdmin: false
   };
-  constructor(private http: Http) { }
+  geo = {
+    lat: '',
+    lon: ''
+  };
+  constructor(private http: Http) {
+    this.getLocation();
+  }
 
 
-  attentionAlert(title,msg,type) {
+  attentionAlert(title, msg, type) {
     swal({
       title: title,
       text: msg,
@@ -30,6 +38,18 @@ export class WebServicesService {
       timer: 2000
     });
   }
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position: any) => {
+        this.geo.lat = position.coords.latitude;
+        this.geo.lon = position.coords.longitude;
+
+      });
+    } else {
+     console.log('Geolocation is not supported by this browser.');
+    }
+  }
+
   // HTTP REQUEST MAIN FUNCTION TO CALL THE WEBSERVICES EVERY IS ROUTED THROUGH THESE GET POST METHOD
 
   getData(u) {
@@ -146,5 +166,11 @@ export class WebServicesService {
     const u = this.BASE_URL + 'UpdateExecutiveRemarks';
     return this.postData(u, data);
   }
+  postSignUp(data) {
+    const u = this.MAIN_URL + 'SignUp';
+    return this.postData(u, data);
+  }
+  postUserLogin() {
 
+  }
 }

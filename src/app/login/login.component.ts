@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {WebServicesService} from '../web-services.service';
 import {AuthService} from 'angular2-social-login';
+import {MatTabGroup} from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +9,13 @@ import {AuthService} from 'angular2-social-login';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  @ViewChild('tabs') tabs: MatTabGroup;
   sub: any;
   errorMsg = '';
   data = {
     email: '',
-    password: ''
+    password: '',
+    FullName:'',
   };
   errors = {
     email: false,
@@ -56,11 +59,56 @@ export class LoginComponent implements OnInit {
     });
   }
   signIn(provider) {
-    this.sub = this._auth.login(provider).subscribe(
-      (data) => {
-        console.log(data);
-        //user data
-        //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google)
-      }
-    ); }
+    if ( provider == 'none') {
+
+    } else {
+      this.sub = this._auth.login(provider).subscribe(
+        (data: any) => {
+              console.log(data);
+          const obj = {
+            'FullName': data.name,
+            'Email' : data.email,
+            'Password' : '',
+            'latitude' : this.webService.geo.lat,
+            'longitude' : this.webService.geo.lon,
+            'pushNotiToken' : '',
+            'MobileNo' : '',
+            'userReferalCode' : '',
+            'LoginType' : (provider == 'google') ? 'GP' : 'FB',
+            'profilePic' : data.image,
+            'socialToken' : data.token
+          };
+          this.webService.postSignUp(obj).then((res: any) => {
+              if (res && res.Response == 'Success') {
+                this.webService.login.id = res.UserId;
+                this.webService.login.token = data.token;
+              }
+          });
+        }
+      );
+    }
+  }
+
+    signUp() {
+      const obj = {
+          'FullName': '',
+          'Email' : '',
+          'Password' : '',
+          'latitude' : '',
+          'longitude' : '',
+          'pushNotiToken' : '',
+          'MobileNo' : '',
+          'userReferalCode' : '',
+          'LoginType' : 'Email',
+          'profilePic' : '',
+          'socialToken' : ''
+      };
+     this.webService.postSignUp(obj).then((res: any) => {
+       if (res && res.Response == 'Success') {
+        this.webService.attentionAlert('Sign Up Successfully', 'Please Login with your new Username Password', 'success');
+         this.tabs.selectedIndex = 0;
+       }
+      });
+  }
+
 }

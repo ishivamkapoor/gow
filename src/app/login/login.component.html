@@ -1,5 +1,5 @@
-<mat-tab-group>
-  <mat-tab label="Login">
+<mat-tab-group #tabs >
+  <mat-tab label="Login" >
     <div class="card rounded-0 hg">
       <div class="card-body">
         <div class="form-group">
@@ -33,7 +33,7 @@
       <!--/card-block-->
     </div>
   </mat-tab>
-  <mat-tab label="Sign Up">
+  <mat-tab label="Sign Up" >
     <div class="card rounded-0 hg">
       <div class="card-body">
         <div class="form-group">
@@ -65,7 +65,7 @@
           </span>
         </div>
         <div class="form-group text-center">
-          <button type="submit" class="btn btn-lg btn-primary" style="width: 100%" >Sign Up</button>
+          <button type="submit" class="btn btn-lg btn-primary" (click)="signUp()" style="width: 100%" >Sign Up</button>
         </div>
       </div>
       <!--/card-block-->
