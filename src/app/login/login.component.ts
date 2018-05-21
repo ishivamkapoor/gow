@@ -13,42 +13,57 @@ export class LoginComponent implements OnInit {
   sub: any;
   errorMsg = '';
   data = {
-    email: '',
-    password: '',
-    FullName:'',
+    Email: '',
+    Password: '',
   };
-  errors = {
-    email: false,
-    password: false
+  signUpForm={
+    Email: '',
+    Password: '',
+    ConfirmPassword: '',
+    FullName: '',
+    MobileNo: '',
+    terms: false
+  }
+  signInErrors = {
+    Email: false,
+    Password: false
   };
+  signUpErrors = {
+    Email: false,
+    Password: false,
+    ConfirmPassword: false,
+    FullName: false,
+    MobileNo: false,
+    terms: false
+  }
   constructor(private webService: WebServicesService, public _auth: AuthService) { }
 
   ngOnInit() {
   }
   postlogin() {
     const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if ( this.data.email == '' || !re.test(this.data.email) ) {
+    if ( this.data.Email == '' || !re.test(this.data.Email) ) {
       this.errorMsg = 'Enter Valid Email';
-      this.errors.email = true;
+      this.signInErrors.Email = true;
       return;
     } else {
-      this.errors.email = false;
+      this.signInErrors.Email = false;
     }
 
-    if ( this.data.password == '' ) {
+    if ( this.data.Password == '' ) {
       // this.snackBar.open('Please Enter Valid Departure and Return Date', '', {duration: 2000});
       this.errorMsg = 'Enter Valid Password';
-      this.errors.password = true;
+      this.signInErrors.Password = true;
       return;
     } else {
-      this.errors.password = false;
+      this.signInErrors.Password = false;
     }
 
     this.webService.adminLogin(this.data).then((data: any) => {
       if (data ) {
         if (data.Response == 'Success') {
-          this.webService.login.id = this.data.email;
-          this.webService.login.isAdmin = true;
+          this.webService.login.id = this.data.Email;
+          this.webService.login.isAdmin = false;
 
         } else {
           this.webService.attentionAlert('Attention', 'Invalid Email or Password', 'warning');
