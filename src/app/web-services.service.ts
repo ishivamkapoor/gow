@@ -15,6 +15,8 @@ export class WebServicesService {
   private data: any;
   public airportList = [];
   public inProgress = false;
+  User:any;
+  Token:any;
   login = {
     id: '',
     token:'',
@@ -170,7 +172,8 @@ export class WebServicesService {
     const u = this.MAIN_URL + 'SignUp';
     return this.postData(u, data);
   }
-  postUserLogin() {
-
+  postUserLogin(data) {
+    const u = this.MAIN_URL + 'SignIn';
+    return this.postData(u, data);
   }
 }

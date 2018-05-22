@@ -6,7 +6,7 @@
   top: 0;
   display: table;
   text-align: center;
-  z-index: 100;
+  z-index: 1000000;
 }
 .my-spinner{
   display: table-cell;

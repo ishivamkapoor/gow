@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {LoginComponent} from '../login/login.component';
+import {WebServicesService} from '../web-services.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import {LoginComponent} from '../login/login.component';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor( public dialog: MatDialog) { }
+  constructor( public dialog: MatDialog,public webService:WebServicesService) { }
 
   ngOnInit() {
   }
