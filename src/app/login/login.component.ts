@@ -37,8 +37,8 @@ export class LoginComponent implements OnInit {
     MobileNo: false,
     terms: false
   };
-  constructor( public dialogRef: MatDialogRef<RemarksDialogComponent>,
-               @Inject(MAT_DIALOG_DATA) public data: any,private webService: WebServicesService, public _auth: AuthService) { }
+  constructor( public dialogRef: MatDialogRef<LoginComponent>,
+               @Inject(MAT_DIALOG_DATA) public x:any,private webService: WebServicesService, public _auth: AuthService) { }
 
   ngOnInit() {
   }

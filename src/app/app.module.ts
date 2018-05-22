@@ -84,7 +84,7 @@ const providers = {
   ],
   providers: [WebServicesService, {provide: APP_BASE_HREF, useValue: '/'}],
   bootstrap: [AppComponent],
-  entryComponents: [RemarksDialogComponent]
+  entryComponents: [RemarksDialogComponent,LoginComponent]
 })
 export class AppModule { }
 Angular2SocialLoginModule.loadProvidersScripts(providers);

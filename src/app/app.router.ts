@@ -8,8 +8,6 @@ import {AdminLoginComponent} from './admin-login/admin-login.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 
 const appRoutes: Routes =[
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
   {path: '*', component: DashboardComponent},
   {path: '', component: DashboardComponent},
   {path: 'admin/dashboard', component: AdminDashboardComponent},
