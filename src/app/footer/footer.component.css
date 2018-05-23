@@ -15,3 +15,12 @@
 a{
   color: black;
 }
+ul{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  position: relative;;
+}
+h4{
+  font-weight: bold;
+}

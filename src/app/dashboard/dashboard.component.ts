@@ -5,6 +5,7 @@ import 'rxjs/add/operator/debounceTime';
 import {FormControl} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
 import {state, style, trigger,transition,animate} from '@angular/animations';
+import {AuthService} from 'angular2-social-login';
 declare var  swal: any;
 @Component({
   selector: 'app-dashboard',
@@ -52,7 +53,7 @@ export class DashboardComponent implements OnInit {
      'ClassType': false,
      'TripType': false
    };
-  constructor(public webService: WebServicesService,  public snackBar: MatSnackBar) {
+  constructor(public webService: WebServicesService,  public snackBar: MatSnackBar,public _auth: AuthService) {
     this.detail.SourceLoc.valueChanges.debounceTime(500).subscribe((word) => {
       this.webService.getAirportList(word);
     });
@@ -66,6 +67,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  logOut(){
+
   }
   adults(x) {
     if (x) {

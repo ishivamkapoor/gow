@@ -1,5 +1,14 @@
 .logo{
   height: 13vh;
+  float: left;
+}
+.company-name{
+  margin-top: 4vh;
+}
+@media (max-width: 500px) {
+  .company-name{
+    display: none;
+  }
 }
 .nav-item{
   margin: 10px;
@@ -7,4 +16,7 @@
 }
 .nav-link{
   font-size: 20px;
+}
+.profile-menu-list{
+  padding-left: 10px;
 }
