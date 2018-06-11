@@ -17,3 +17,15 @@
 .cl-white{
   color: white;
 }
+.blue-text{
+  color: #00307f!important;
+}
+.bg-blue{
+  background: #00307f!important;
+}
+.orange-text{
+  color: #ff4e00 !important;
+}
+.bg-orange{
+  background: #ff4e00!important;
+}

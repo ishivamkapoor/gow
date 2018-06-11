@@ -3,7 +3,6 @@ import {Observable} from 'rxjs/Observable';
 import {Http, Headers} from '@angular/http';
 
 import 'rxjs/add/operator/map';
-import {HttpHeaders} from '@angular/common/http';
 
 declare var Rx, swal;
 
@@ -17,6 +16,7 @@ export class WebServicesService {
   public inProgress = false;
   User:any;
   Token:any;
+  loginBy:any;
   login = {
     id: '',
     token:'',
@@ -28,8 +28,25 @@ export class WebServicesService {
   };
   constructor(private http: Http) {
     this.getLocation();
+    // this.event.addListener("logout",()=>{
+    //
+    // })
   }
 
+
+  // logout(){
+  //   this._auth.logout().subscribe(
+  //     (data) => {
+  //       if(data){
+  //         this.inProgress=true;
+  //         setTimeout(()=>{
+  //           this.User=null;
+  //           this.Token=null;
+  //           this.inProgress=false;
+  //         },1000);
+  //       }
+  //     });
+  // }
 
   attentionAlert(title, msg, type) {
     swal({

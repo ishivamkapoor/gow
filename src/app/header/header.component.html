@@ -1,123 +1,104 @@
-
-  <!--<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 150px">-->
-   <!--<div class="container" style="min-width: 80%">-->
-     <!--<a class="navbar-brand"  routerLink="/">-->
-       <!--<img src="assets/logo.png" class="logo" />-->
-     <!--</a>-->
-     <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
-       <!--<span class="navbar-toggler-icon"></span>-->
-     <!--</button>-->
-     <!--<div class="collapse navbar-collapse" id="navbarNav">-->
-       <!--<ul class="navbar-nav">-->
-         <!--<li class="nav-item active">-->
-           <!--<a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>-->
-         <!--</li>-->
-         <!--<li class="nav-item">-->
-           <!--<a class="nav-link" routerLink="/">Services</a>-->
-         <!--</li>-->
-         <!--<li class="nav-item">-->
-           <!--<a class="nav-link" routerLink="/">Account</a>-->
-         <!--</li>-->
-         <!--<li class="nav-item">-->
-           <!--<a class="nav-link" routerLink="/">My Bookings</a>-->
-         <!--</li>-->
-         <!--<li class="nav-item">-->
-           <!--<a class="nav-link" routerLink="/">Contact Us</a>-->
-         <!--</li>-->
-         <!--<li class="nav-item">-->
-           <!--<a class="nav-link" routerLink="/">About Us</a>-->
-         <!--</li>-->
-         <!--&lt;!&ndash;<li class="nav-item d-block d-lg-none">&ndash;&gt;-->
-           <!--&lt;!&ndash;<a class="nav-link" routerLink="/register">Sign Up</a>&ndash;&gt;-->
-         <!--&lt;!&ndash;</li>&ndash;&gt;-->
-         <!--&lt;!&ndash;<li class="nav-item d-block d-lg-none">&ndash;&gt;-->
-           <!--&lt;!&ndash;<a class="nav-link" routerLink="/login">Login</a>&ndash;&gt;-->
-         <!--&lt;!&ndash;</li>&ndash;&gt;-->
-       <!--</ul>-->
-     <!--</div>-->
-     <!--&lt;!&ndash;<form class="form-inline my-2 my-lg-0 d-none d-md-block">&ndash;&gt;-->
-       <!--&lt;!&ndash;<button class="btn btn-outline-primary" routerLink="/register" type="button">Sign Up</button>&ndash;&gt;-->
-       <!--&lt;!&ndash;&nbsp; &nbsp;&ndash;&gt;-->
-       <!--&lt;!&ndash;<button class="btn btn-outline-primary" routerLink="/login" type="button">Login</button>&ndash;&gt;-->
-     <!--&lt;!&ndash;</form>&ndash;&gt;-->
-   <!--</div>-->
-  <!--</nav>-->
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 5%;padding-right: 5%">
-    <a class="navbar-brand" href="#">
-      <img src="assets/logo.png" class="logo" />
-      <h3 class="company-name ">GlobeOnWings</h3>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav ml-auto ">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/">Flights <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/">Hotels</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/">Packages</a>
-        </li>
-        <!--<li class="nav-item dropdown">-->
-          <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-            <!--Account-->
+<!--<div class="container-fluid top-header">-->
+  <!--<div class="container text-right">-->
+    <!--<nav class="navbar navbar-expand-lg justify-content-between ">-->
+      <!--<ul style="list-style: none;">-->
+        <!--<li class="nav-item active d-none d-lg-block ">-->
+          <!--<a class="nav-link nav-top" href="#">-->
+            <!--<i class="fa fa-phone"></i>-->
+            <!--1888-742-4496-->
           <!--</a>-->
-          <!--<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">-->
-            <!--<a class="dropdown-item" routerLink="/">My Bookings</a>-->
+        <!--</li>-->
+        <!--<li class="nav-item dropdown">-->
+          <!--<a class="nav-link nav-top dropdown-toggle" href="#" id="SupprtMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--Support-->
+          <!--</a>-->
+          <!--<div class="dropdown-menu" aria-labelledby="SupprtMenu">-->
+            <!--<a class="dropdown-item" href="#">Action</a>-->
+            <!--<a class="dropdown-item" href="#">Another action</a>-->
+            <!--<a class="dropdown-item" href="#">Something else here</a>-->
           <!--</div>-->
         <!--</li>-->
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" *ngIf="!webService.User && !webService.Token"(click)="openLogin()">My Account</button>&nbsp;&nbsp;
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0" *ngIf="webService.User && webService.Token">
-          <li class="dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">{{webService.User?.FullName}}</a>
-            <ul class="dropdown-menu">
-              <li class="profile-menu-list">
-                <a href="#">My Profile</a>
-              </li>
-              <li class="profile-menu-list">
-                <a href="#">Logout</a>
-              </li>
-            </ul>
+        <!--<li class="nav-item dropdown">-->
+          <!--<a class="nav-link nav-top dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--My account-->
+          <!--</a>-->
+          <!--<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">-->
+            <!--<a class="dropdown-item" href="#">Action</a>-->
+            <!--<a class="dropdown-item" href="#">Another action</a>-->
+            <!--<a class="dropdown-item" href="#">Something else here</a>-->
+          <!--</div>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</nav>-->
+  <!--</div>-->
+<!--</div>-->
+<div class="container-fluid top-header">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between top-header" >
+      <a class="navbar-brand"></a>
+      <form class="form-inline my-3 my-lg-0">
+        <ul style="list-style: none">
+          <li class="nav-item active d-none d-lg-block ">
+            <a class="nav-link nav-top" href="#">
+              <i class="fa fa-phone"></i>
+              1833-506-1666
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link nav-top dropdown-toggle" href="#" id="SupprtMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Support
+            </a>
+            <div class="dropdown-menu" aria-labelledby="SupprtMenu">
+              <a class="dropdown-item" href="#">Contact Us</a>
+              <a class="dropdown-item" href="#">Help</a>
+              <a class="dropdown-item" href="#">FAQ</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown" *ngIf="!webService.User && !webService.Token"(click)="openLogin()">
+            <a class="nav-link nav-top" style="cursor: pointer;" >
+              My account
+            </a>
+            <!--<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">-->
+              <!--<a class="dropdown-item" href="#">Action</a>-->
+              <!--<a class="dropdown-item" href="#">Another action</a>-->
+              <!--<a class="dropdown-item" href="#">Something else here</a>-->
+            <!--</div>-->
+          </li>
+          <li class="nav-item dropdown" *ngIf="webService.User && webService.Token">
+            <a class="nav-link nav-top dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{webService.User?.FullName}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">My Profile</a>
+              <a class="dropdown-item" href="#" (click)="logout()">Logout</a>
+            </div>
           </li>
         </ul>
-        <!--<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Sign Up</button>-->
       </form>
-    </div>
-  </nav>
+    </nav>
+  </div>
+</div>
 
-  <!--EarnedPoints: null-->
-  <!--​​​-->
-  <!--Email: "hello@hello.com"-->
-  <!--​​​-->
-  <!--FullName: "shivam"-->
-  <!--​​​-->
-  <!--IsBusiness: false-->
-  <!--​​​-->
-  <!--IsVerified: null-->
-  <!--​​​-->
-  <!--LastLogin: null-->
-  <!--​​​-->
-  <!--Latitude: 31.250707099999996-->
-  <!--​​​-->
-  <!--Longitude: 75.70806139999999-->
-  <!--​​​-->
-  <!--MobileNo: "9988632533"-->
-  <!--​​​-->
-  <!--ProfilePic: "http://admin.globeonwings.com:80/ProfilePic/"-->
-  <!--​​​-->
-  <!--PushNotificationToken: null-->
-  <!--​​​-->
-  <!--ReferalCode: "GOWREF752018"-->
-  <!--​​​-->
-  <!--SocialToken: null-->
-  <!--​​​-->
-  <!--UsedReferalCode: ""-->
-  <!--​​​-->
-  <!--UserId: 7-->
+<div class="container-fluid">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between" style="background: white!important;">
+      <a class="navbar-brand">
+        <img class="my-logo" src="assets/logo.png"/>
+        <span class="blue-text"><b>GLOBE <span class="orange-text">ON</span>  WINGS</b></span>
+      </a>
+      <form class="form-inline my-3 my-lg-0">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ">
+            <a class="nav-item nav-link active" href="#">FLIGHTS</a>
+            <a class="nav-item nav-link" href="#">HOTELS</a>
+            <a class="nav-item nav-link" href="#">PACKAGES</a>
+            <a class="nav-item nav-link orange-text" style="cursor: pointer" (click)="openCheckout()">PAY NOW</a>
+          </div>
+        </div>
+      </form>
+    </nav>
+  </div>
+</div>

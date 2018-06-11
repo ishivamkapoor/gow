@@ -1,22 +1,19 @@
-.logo{
-  height: 13vh;
-  float: left;
+.top-header{
+  background: #46505c !important;
+  height: 40px;
+  padding-top: 8px;
 }
-.company-name{
-  margin-top: 4vh;
-}
-@media (max-width: 500px) {
-  .company-name{
-    display: none;
-  }
+.nav-top{
+  color: white!important;
+  text-transform:uppercase;
+  font-size: 0.7em;
 }
 .nav-item{
-  margin: 10px;
+  float: left!important;
+}
+.my-logo{
+  height: 40px;
+  width: 47px;
+  margin-bottom: 10px;
 
-}
-.nav-link{
-  font-size: 20px;
-}
-.profile-menu-list{
-  padding-left: 10px;
 }

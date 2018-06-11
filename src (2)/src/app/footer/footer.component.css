@@ -1,0 +1,27 @@
+.my-padding{
+  padding-bottom: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+}
+.images-style{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.toggle{
+  height:15px;
+  width:15px;
+  color: white;
+
+  background:url("../../assets/icon/add.png");
+}
+.toggle.expanded{
+  color: white;
+  background:url("../../assets/icon/minus.png");
+}
+
+.content{
+  color:white;
+}

@@ -1,170 +1,258 @@
 
-<div class="bgimg-1" [@bgChange]="bgwall">
-  <div class="caption">
-    <div class="container" style="min-width: 90%">
-      <div class="row">
-        <div class="col-md-6">
-          <mat-radio-group name="tripType" [(ngModel)]="detail.TripType">
-            <mat-radio-button color="primary" value="One Way"><span style="color: white" >One Way</span></mat-radio-button>
-            <mat-radio-button color="primary" value="Round Trip"><span style="color: white" >Round Trip</span></mat-radio-button>
-            <!--<mat-radio-button color="primary" value="Multi City"><span style="color: white" >Multi City</span></mat-radio-button>-->
-          </mat-radio-group>
-        </div>
-      </div>
-      <br>
-      <form>
-      <div class="row">
-         <div class="col-md-4">
-           <p>&nbsp;</p>
-           <div class="input-group">
-             <div class="input-group-prepend">
-               <span class="input-group-text" ><i class="fas fa-map-marker"></i></span>
-             </div>
-             <input type="text" id="textInput" [matAutocomplete]="auto" [formControl]="detail.SourceLoc" class="form-control form-control-lg"  placeholder="Enter Departure City">
-             <mat-autocomplete #auto="matAutocomplete">
-               <mat-option *ngFor="let option of webService.airportList" [value]="option.label">
-                 {{ option.label }}
-               </mat-option>
-             </mat-autocomplete>
-           </div>
-         </div>
-        <div class="col-md-4">
-          <p>&nbsp;</p>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text" ><i class="fas fa-map-marker"></i></span>
-            </div>
-            <input type="text" (focus)="clearAirports()" class="form-control form-control-lg" [matAutocomplete]="auto2"  [formControl]="detail.DestinationLoc"  placeholder="Enter Destination City">
-            <mat-autocomplete #auto2="matAutocomplete">
-              <mat-option *ngFor="let option of webService.airportList" [value]="option.label">
-                {{ option.label }}
-              </mat-option>
-            </mat-autocomplete>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <p>&nbsp;</p>
-          <div class="input-group">
-
-            <input class="form-control form-control-lg" name="departureDate" [(ngModel)]="detail.DepartureDate" [matDatepicker]="myDatepicker">
-            <div class="input-group-append bg-white">
-              <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-              <mat-datepicker #myDatepicker></mat-datepicker>
+<div class="bgimg-1 form-container" [@bgChange]="bgwall">
+    <div class=" form-container-in" >
+      <div class="container " >
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-md-6">
+              <mat-radio-group name="tripType" [(ngModel)]="detail.TripType">
+                <mat-radio-button color="primary" value="One Way"><span class="sub-heading" style="color: white" >One Way</span></mat-radio-button>&nbsp;
+                <mat-radio-button color="primary" value="Round Trip"><span class="sub-heading" style="color: white" >Round Trip</span></mat-radio-button>
+                <!--<mat-radio-button color="primary" value="Multi City"><span style="color: white" >Multi City</span></mat-radio-button>-->
+              </mat-radio-group>
             </div>
           </div>
-        </div>
-        <div class="col-sm-2" *ngIf="detail.TripType=='Round Trip'">
-          <p>&nbsp;</p>
-          <div class="input-group">
-            <input class="form-control form-control-lg" [disabled]="detail.TripType!='Round Trip'" name="returnDate" [(ngModel)]="detail.ReturnDate" [matDatepicker]="myDatepicker2">
-            <div class="input-group-append bg-white" >
-              <mat-datepicker-toggle [disabled]="detail.TripType!='Round Trip'" [for]="myDatepicker2"></mat-datepicker-toggle>
-              <mat-datepicker #myDatepicker2></mat-datepicker>
+          <form>
+            <div class="row">
+              <div class="col-md-4">
+                <p>&nbsp;</p>
+                <div class="input-group">
+                  <div class="input-group-prepend bg-white-important" >
+                    <span class="input-group-text bg-white" ><i class="fas fa-map-marker"></i></span>
+                  </div>
+                  <input type="text" id="textInput" [matAutocomplete]="auto" [formControl]="detail.SourceLoc" class="form-control"  placeholder="Enter Departure City">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of webService.airportList" [value]="option.label">
+                      {{ option.label }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <p>&nbsp;</p>
+                <div class="input-group">
+                  <div class="input-group-prepend bg-white-important">
+                    <span class="input-group-text bg-white" ><i class="fas fa-map-marker"></i></span>
+                  </div>
+                  <input type="text" (focus)="clearAirports()" class="form-control " [matAutocomplete]="auto2"  [formControl]="detail.DestinationLoc"  placeholder="Enter Destination City">
+                  <mat-autocomplete #auto2="matAutocomplete">
+                    <mat-option *ngFor="let option of webService.airportList" [value]="option.label">
+                      {{ option.label }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <p>&nbsp;</p>
+                <div class="input-group">
+                  <input class="form-control" name="departureDate" [(ngModel)]="detail.DepartureDate" [matDatepicker]="myDatepicker">
+                  <div class="input-group-append bg-white">
+                    <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #myDatepicker></mat-datepicker>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-2" *ngIf="detail.TripType=='Round Trip'">
+                <p>&nbsp;</p>
+                <div class="input-group">
+                  <input class="form-control " [disabled]="detail.TripType!='Round Trip'" name="returnDate" [(ngModel)]="detail.ReturnDate" [matDatepicker]="myDatepicker2">
+                  <div class="input-group-append bg-white" >
+                    <mat-datepicker-toggle [disabled]="detail.TripType!='Round Trip'" [for]="myDatepicker2"></mat-datepicker-toggle>
+                    <mat-datepicker #myDatepicker2></mat-datepicker>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <br>
+          <div class="row">
+            <div class="col-md-2">
+              <span class="sub-heading" style="color: white" >Adult</span>
+              <div class="input-group ">
+                <div class="input-group-prepend bg-white" >
+                  <button class="btn btn-outline-secondary no-border no-border-radius"  (click)="adults(false)" type="button">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <input type="text" style="text-align: center" [(ngModel)]="detail.Adult" min="0" disabled class="form-control no-border" value="0"  >
+                <div class="input-group-append bg-white">
+                  <button class="btn btn-outline-secondary no-border no-border-radius" (click)="adults(true)"  type="button">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <span class="sub-heading" style="color: white" >Child</span>
+              <div class="input-group ">
+                <div class="input-group-prepend bg-white">
+                  <button class="btn btn-outline-secondary no-border no-border-radius" (click)="child(false)" type="button">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <input type="text" style="text-align: center" [(ngModel)]="detail.Child" min="0" disabled class="form-control " value="0"  >
+                <div class="input-group-append bg-white">
+                  <button class="btn btn-outline-secondary no-border no-border-radius" (click)="child(true)"  type="button">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <span class="sub-heading" style="color: white" >Infants</span>
+              <div class="input-group ">
+                <div class="input-group-prepend bg-white">
+                  <button class="btn btn-outline-secondary no-border no-border-radius" (click)="infant(false)" type="button">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <input type="text" style="text-align: center" [(ngModel)]="detail.Infant" min="0" disabled class="form-control " value="0"  >
+                <div class="input-group-append bg-white">
+                  <button class="btn btn-outline-secondary no-border no-border-radius" (click)="infant(true)"  type="button">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <span class="sub-heading" style="color: white" >Class</span>
+              <div class="form-group">
+                <select [(ngModel)]="detail.ClassType" class="form-control no-border" id="sel1">
+                  <option >All</option>
+                  <option>First Supersonic</option>
+                  <option>Business</option>
+                  <option>Economic</option>
+                  <option>Premium Economy</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <span>&nbsp;</span>
+              <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#myModal">Open Modal</button>
+              <button type="button" style="width: 100%" (click)="verifySearchData()" class="btn bg-orange">SEARCH</button>
+              <!--<button type="button" style="width: 100%" class="btn btn-lg  btn-primary">Search</button>-->
             </div>
           </div>
-        </div>
-      </div>
-      </form>
-      <br>
-      <div class="row">
-        <div class="col-md-2">
-          <p><span class="sub-heading" style="color: white" >Adult</span></p>
-          <div class="input-group ">
-            <div class="input-group-prepend bg-white">
-              <button class="btn btn-outline-secondary" (click)="adults(false)" type="button">
-                <i class="fas fa-minus"></i>
-              </button>
-            </div>
-            <input type="text" style="text-align: center" [(ngModel)]="detail.Adult" min="0" disabled class="form-control form-control-lg" value="0"  >
-            <div class="input-group-append bg-white">
-              <button class="btn btn-outline-secondary" (click)="adults(true)"  type="button">
-                <i class="fas fa-plus"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <p><span class="sub-heading" style="color: white" >Child</span></p>
-          <div class="input-group ">
-            <div class="input-group-prepend bg-white">
-              <button class="btn btn-outline-secondary" (click)="child(false)" type="button">
-                <i class="fas fa-minus"></i>
-              </button>
-            </div>
-            <input type="text" style="text-align: center" [(ngModel)]="detail.Child" min="0" disabled class="form-control form-control-lg" value="0"  >
-            <div class="input-group-append bg-white">
-              <button class="btn btn-outline-secondary" (click)="child(true)"  type="button">
-                <i class="fas fa-plus"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <p><span class="sub-heading" style="color: white" >Infants</span></p>
-          <div class="input-group ">
-            <div class="input-group-prepend bg-white">
-              <button class="btn btn-outline-secondary" (click)="infant(false)" type="button">
-                <i class="fas fa-minus"></i>
-              </button>
-            </div>
-            <input type="text" style="text-align: center" [(ngModel)]="detail.Infant" min="0" disabled class="form-control form-control-lg" value="0"  >
-            <div class="input-group-append bg-white">
-              <button class="btn btn-outline-secondary" (click)="infant(true)"  type="button">
-                <i class="fas fa-plus"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <p><span class="sub-heading" style="color: white" >Class</span></p>
-          <div class="form-group">
-            <select [(ngModel)]="detail.ClassType" class="form-control form-control-lg" id="sel1">
-              <option >All</option>
-              <option>First Supersonic</option>
-              <option>Business</option>
-              <option>Economic</option>
-              <option>Premium Economy</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <p>&nbsp;</p>
-          <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#myModal">Open Modal</button>
-          <button type="button" style="margin-top:5px;width: 100%" (click)="verifySearchData()" class="btn btn-primary btn-lg">SEARCH</button>
-          <!--<button type="button" style="width: 100%" class="btn btn-lg  btn-primary">Search</button>-->
         </div>
       </div>
     </div>
+</div>
+
+<div class="flight-deals">
+  <br>
+  <h3 style="text-align:center;">TODAYS FLIGHT DEALS</h3>
+  <!--<P>A brand new online travel service provider which has come forward with the-->
+    <!--only aim to give the customers an outstanding experience to travel around the globe and explore the-->
+    <!--Universe with the decent fare which an average individual can afford to pay.-->
+    <!--Our company is the best of its kind with the unique brand new innovative way of serving with the-->
+    <!--trending offers to satisfy each customer. Our sole concept to run the services and give the best by-->
+    <!--following the only motto called &quot;TRUST&quot;. As trust provides a brand new bonding with the users and-->
+    <!--understand the requirements of the loyal customers which result in an increasing gratification.-->
+    <!--Our travel services include domestic and international airline ticket bookings, hotels and holiday tour-->
+    <!--packages with the best tour guide plan through our site www.globeonwings.com a robust-->
+    <!--technology platform drafted with its reliability and transparency.</P>-->
+  <!--<P>-->
+    <!--We devote our strength only to ensure the safe journey of the customers and support them in every-->
+    <!--phase of their journey.</P>-->
+  <br>
+  <div class="col-sm-10 offset-md-1">
+    <div class="owl-carousel owl-theme owl-loaded" style="padding-top:10px !important;padding-bottom:10px !important;padding-left:30px !important;padding-right:40px !important;background-color:#eeeeee">
+      <!--<h1 class="heading-style">TODAY'S FLIGHT</h1>-->
+      <div class="owl-stage-outer">
+        <div class="owl-stage">
+          <div class="owl-item" style="padding-bottom:10px !important;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card">
+                <img height="200px" style="max-height: 200px" style="max-height: 200px" src="assets/cards/c1.jpg">
+                <div>
+                  <p class="p-style formlocton">Houston (IAH)</p>
+                  <p class="p-style tolocton">Dubai (DXB)</p>
+                  <!-- <span>USA</span> -->
+                  <br>
+                  <br>
+                  <hr style="height:1px;">
+                  <button class="col-sm-6 offset-md-3 form-control bg-orange heading-style">BOOK NOW</button>
+                  <br>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="owl-item" style="padding-bottom:10px !important;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card">
+                <img height="200px" style="max-height: 200px" style="max-height: 200px" src="assets/cards/c2.jpg">
+                <div>
+                  <p class="p-style formlocton"> Houston (IAH)</p>
+                  <p class="p-style tolocton">Singapore (SIN)</p>
+                  <!-- <span>USA</span> -->
+                  <br>
+                  <br>
+                  <hr style="height:1px;">
+                  <button class="col-sm-6 offset-md-3 form-control bg-orange heading-style">BOOK NOW</button>
+                  <br>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="owl-item" style="padding-bottom:10px !important;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card">
+                <img height="200px" style="max-height: 200px" src="assets/cards/c3.jpg">
+                <div>
+                  <p class="p-style formlocton"> Houston (IAH) </p>
+                  <p class="p-style tolocton"> Singapore (SIN) </p>
+                  <!-- <span>USA</span> -->
+                  <br>
+                  <br>
+                  <hr style="height:1px;">
+                  <button class="col-sm-6 offset-md-3 form-control bg-orange heading-style">BOOK NOW</button>
+                  <br>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="owl-item">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card">
+                <img height="200px" style="max-height: 200px" style="max-height: 200px" src="assets/cards/c4.jpg">
+                <div>
+                  <p class="p-style formlocton"> Houston (IAH)</p>
+                  <p class="p-style tolocton">Singapore (SIN)</p>
+                  <!-- <span>USA</span> -->
+                  <br>
+                  <br>
+                  <hr style="height:1px;">
+                  <button class="col-sm-6 offset-md-3 form-control bg-orange heading-style">BOOK NOW</button>>
+                  <br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="owl-nav">
+        <div id="customNextBtn" class="owl-prev" style="font-size: 20px;">&laquo; Prev</div>
+        <div id="customPrevBtn" class="owl-next" style="font-size: 20px;">Next &raquo;</div>
+      </div>
+    </div>
+
   </div>
+  <br>
 </div>
 
-<div style="color: #777;background-color:white;text-align:center;padding: 10px 5%;text-align: justify;">
-  <h3 style="text-align:center;">GlOBE ON WINGS</h3>
-  <P>A brand new online travel service provider which has come forward with the
-    only aim to give the customers an outstanding experience to travel around the globe and explore the
-    Universe with the decent fare which an average individual can afford to pay.
-    Our company is the best of its kind with the unique brand new innovative way of serving with the
-    trending offers to satisfy each customer. Our sole concept to run the services and give the best by
-    following the only motto called &quot;TRUST&quot;. As trust provides a brand new bonding with the users and
-    understand the requirements of the loyal customers which result in an increasing gratification.
-    Our travel services include domestic and international airline ticket bookings, hotels and holiday tour
-    packages with the best tour guide plan through our site www.globeonwings.com a robust
-    technology platform drafted with its reliability and transparency.</P>
-  <P>
-    We devote our strength only to ensure the safe journey of the customers and support them in every
-    phase of their journey.</P>
-</div>
-
-<div class="bgimg-2" style="display: table">
+<div class="bgimg-2" style="min-height:200px;display: table">
   <div class="caption" style="display: table-cell;vertical-align: middle">
   <div class="container" >
+    <div class="col-sm-10 offset-md-1">
       <div class="row ">
         <div class="col-md-4 full_mobile bestPrieguara">
           <div class="bestpriimg">
             <img src="http://www.flightsservices.com/assets/theme_dark/images/best-pri.png">
           </div>
           <div class="bestpridesc">
-            <h2 style="color: white">Best Price <br>Guaranteed</h2>
+            <h5 style="color: white">Best Price <br>Guaranteed</h5>
           </div>
         </div>
         <div class="col-md-4 nopad full_mobile custsatific">
@@ -172,7 +260,7 @@
             <img src="http://www.flightsservices.com/assets/theme_dark/images/cus-satifi.png">
           </div>
           <div class="custmasatifi">
-            <h2 style="color: gray">99.9% Customer <br>Satisfaction</h2>
+            <h5 style="color: gray">99.9% Customer <br>Satisfaction</h5>
           </div>
         </div>
         <div class="col-md-4 nopad full_mobile custsuprt">
@@ -180,10 +268,12 @@
             <img src="http://www.flightsservices.com/assets/theme_dark/images/cus-supp.png">
           </div>
           <div class="bestpridesc">
-            <h2 style="color: white">24/7 Customer <br>Support</h2>
+            <h5 style="color: white">24/7 Customer <br>Support</h5>
           </div>
         </div>
       </div>
+
+    </div>
       <!--<div class="alllets hide">-->
         <!--<div class="col-md-6 nopad">-->
           <!--<div class="inerlets">-->
@@ -251,33 +341,33 @@
       <div class="modal-body">
         <div class="col-sm-12">
           <div class="form-group">
-            <input [formControl]="detail.Name" matInput class="form-control form-control-lg" placeholder="Name"  value="">
+            <input [formControl]="detail.Name" matInput class="form-control" placeholder="Name"  value="">
             <small *ngIf="errors.Name" class="form-text text-danger">Please fill Contact Name.</small>
           </div>
         </div>
         <br>
         <div class="col-sm-12">
           <div class="form-group">
-            <input [formControl]="detail.Email" matInput class="form-control form-control-lg" placeholder="Email" value="">
+            <input [formControl]="detail.Email" matInput class="form-control" placeholder="Email" value="">
             <small *ngIf="errors.Email" class="form-text text-danger">Please fill Valid Email Address.</small>
           </div>
         </div>
         <br>
         <div class="col-sm-12">
           <div class="form-group">
-            <input [formControl]="detail.Phone" matInput class="form-control form-control-lg" placeholder="Phone No." value="">
+            <input [formControl]="detail.Phone" matInput class="form-control" placeholder="Phone No." value="">
             <small *ngIf="errors.Phone" class="form-text text-danger">Please fill Valid Mobile Number.</small>
           </div>
         </div>
         <br>
         <div class="col-sm-12 text-center">
           <button id="closeModalButton" [hidden]="true" data-dismiss="modal">Open Modal</button>
-          <button type="button" (click)="postTicketDetails()" class="btn col-sm-6 btn-primary btn-lg" >Save</button>
+          <button type="button" (click)="postTicketDetails()" class="btn col-sm-6 bg-orange " >Save</button>
         </div>
       </div>
       <div class="modal-footer">
         <!--<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>-->
-        <p class="font-weight-light">Please Enter your Contact Detail our Representative will contact you within 24 hours</p>
+        <p class="font-weight-light sub-heading">Please Enter your Contact Detail our Representative will contact you within 24 hours</p>
       </div>
     </div>
   </div>

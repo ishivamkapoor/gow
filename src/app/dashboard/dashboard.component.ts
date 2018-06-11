@@ -4,25 +4,26 @@ import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
 import {FormControl} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
-import {state, style, trigger,transition,animate} from '@angular/animations';
+import {state, style, trigger, transition, animate} from '@angular/animations';
 import {AuthService} from 'angular2-social-login';
 declare var  swal: any;
+declare var $;
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
   animations: [
     trigger('bgChange', [
-      state('0', style({'background-image': "url('assets/wallpaper/w3.jpeg')" })),
-      state('1', style({'background-image': "url('assets/wallpaper/w2.jpg') "})),
-      state('2', style({'background-image': "url('assets/wallpaper/w1.jpg') "})),
+      state('0', style({'background-image': 'url(\'assets/wallpaper/w3.jpeg\')' })),
+      state('1', style({'background-image': 'url(\'assets/wallpaper/w2.jpg\') '})),
+      state('2', style({'background-image': 'url(\'assets/wallpaper/w1.jpg\') '})),
       transition('* => *', animate('600ms 0.2ms ease-in-out'))
     ])
   ]
 
 })
 export class DashboardComponent implements OnInit {
-  bgwall:Number=0;
+  bgwall: Number = 0;
   private currentDate = new Date();
   private input = document.getElementById('textInput');
    detail: any = {
@@ -53,7 +54,7 @@ export class DashboardComponent implements OnInit {
      'ClassType': false,
      'TripType': false
    };
-  constructor(public webService: WebServicesService,  public snackBar: MatSnackBar,public _auth: AuthService) {
+  constructor(public webService: WebServicesService,  public snackBar: MatSnackBar, public _auth: AuthService) {
     this.detail.SourceLoc.valueChanges.debounceTime(500).subscribe((word) => {
       this.webService.getAirportList(word);
     });
@@ -61,15 +62,59 @@ export class DashboardComponent implements OnInit {
       this.webService.getAirportList(word);
     });
 
-    setInterval(()=>{
-      this.bgwall=((Math.floor((Math.random() * 10) + 1))%3);
-    },6000);
+    setInterval(() => {
+      this.bgwall = ((Math.floor((Math.random() * 10) + 1)) % 3);
+    }, 6000);
   }
 
   ngOnInit() {
+    // $(document).ready(function () {
+    //   let owl = $('.owl-carousel');
+    //   owl.owlCarousel({
+    //     items:4,
+    //     loop:true,
+    //     margin:10,
+    //     autoplay:true,
+    //     autoplayTimeout:2000,
+    //     autoplayHoverPause:true,
+    //   });
+    //   owl.trigger('play.owl.autoplay',[2000]);
+    // });
+    $(document).ready(function(){
+      let owl = $('.owl-carousel');
+      owl.owlCarousel({
+        loop:true,
+        margin:10,
+        responsiveClass:true,
+        responsive:{
+          0:{
+            items:1,
+            nav:true
+          },
+          600:{
+            items:3,
+            nav:false
+          },
+          1000:{
+            items:3,
+            nav:true,
+            loop:false
+          }
+        }
+      });
+      $('#customPrevBtn').click(function() {
+        owl.trigger('next.owl.carousel', [500]);
+      })
+// Go to the previous item
+      $('#customNextBtn').click(function() {
+        // With optional speed parameter
+        // Parameters has to be in square bracket '[]'
+        owl.trigger('prev.owl.carousel', [500]);
+      })
+    });
   }
 
-  logOut(){
+  logOut() {
 
   }
   adults(x) {
@@ -188,7 +233,7 @@ export class DashboardComponent implements OnInit {
       text: msg,
       type: 'warning',
       button: 'Ok',
-      timer: 1000
+      timer: 2000
     });
   }
   clearAirports() {

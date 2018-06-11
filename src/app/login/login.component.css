@@ -13,5 +13,8 @@
   margin-right:  1%;
 }
 .hg{
-  min-height: 550px;
+  min-height: 300px;
+}
+.card-body{
+  font-size: 12px;
 }

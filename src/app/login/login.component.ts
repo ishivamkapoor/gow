@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     terms: false
   };
   constructor( public dialogRef: MatDialogRef<LoginComponent>,
-               @Inject(MAT_DIALOG_DATA) public x:any,private webService: WebServicesService, public _auth: AuthService) { }
+               @Inject(MAT_DIALOG_DATA) public x: any, private webService: WebServicesService, public _auth: AuthService) { }
 
   ngOnInit() {
   }
@@ -76,7 +76,8 @@ export class LoginComponent implements OnInit {
     // });
   }
   signIn(provider) {
-    if ( provider == 'none') {
+    this.webService.loginBy = provider;
+    if ( provider == 'Email') {
       const re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       if ( this.data.Email == '' || !re.test(this.data.Email) ) {
         this.errorMsg = 'Enter Valid Email';
@@ -111,6 +112,7 @@ export class LoginComponent implements OnInit {
         }
       });
     } else {
+      this.webService.inProgress = true;
       this.sub = this._auth.login(provider).subscribe(
         (data: any) => {
               console.log(data);
@@ -127,8 +129,12 @@ export class LoginComponent implements OnInit {
             'profilePic' : data.image,
             'socialToken' : data.token
           };
-          this.webService.postSignUp(obj).then((res: any) => {
-              if (res && res.Response == 'Success') {
+          this.webService.User = obj;
+          this.webService.Token = data.token;
+          this.dialogRef.close(true);
+           this.webService.postUserLogin(obj).then((res: any) => {
+             this.webService.inProgress = false;
+             if (res && res.Response == 'Success') {
                 this.webService.login.id = res.UserId;
                 this.webService.login.token = data.token;
               }

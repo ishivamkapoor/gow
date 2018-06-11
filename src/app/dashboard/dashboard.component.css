@@ -28,7 +28,45 @@
 .caption {
   vertical-align: middle;
   width: 100%;
+
   color: #000;
+}
+.form-container{
+  position: relative;
+  margin: auto;
+}
+@media screen and (max-width: 600px) {
+  .form-container{
+    min-height: 800px;
+  }
+}
+.form-container-in{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  margin: auto;
+  margin-bottom: 50px;
+}
+.col-md-4{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.col-md-2{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.bg-white-important{
+  background: white!important;
+  border: white;
+}
+.no-border-radius{
+  border-radius: 0px;
+}
+.no-border{
+  border: none!important;
+}
+.flight-deals{
+background: #eeeeee;
 }
 
 .caption span.border {
@@ -67,13 +105,22 @@ h3 {
   padding: 25px 15px;
 }
 .custsuprt {
-  background: #ff4e00;
+  /*background: #ff4e00;*/
+  background: #b41212;
   padding: 25px 15px;
 }
 .sub-heading{
-  font-size: 20px;
+  font-size: 12px;
+  line-height: 0.5px!important;
 }
-
+.form-control{
+  border: none!important;
+  height: 40px;
+}
+..mat-icon-button{
+  line-height: 0px !important;
+  height: auto;
+}
 
 @media screen and (max-width: 991px)
   .bestpriimg {
@@ -87,3 +134,63 @@ h3 {
   float: left;
   margin-right: 25px;
 }
+
+
+  .my-height{
+    height: 350px !important;
+  }
+  .card-image
+  {
+    background: url("../../assets/img/background.jpg");
+    height: 200px;
+  }
+  .heading-style{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  .p-style{
+    color:gray;
+    font-size:14px;
+  }
+
+  .tolocton {
+    float: right;
+  }
+
+  .formlocton {
+    float: left;
+  }
+
+
+
+  .card{
+    background-color: #FFFFFF;
+    padding:0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius:4px;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+
+  }
+  .card:hover{
+    box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
+    color:black;
+  }
+  .card img{
+    width:100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  .card h4{
+    margin:20px;
+  }
+  .card p{
+    margin:20px;
+    opacity: 0.65;
+  }
+  .col-lg-12,.col-md-12,.col-sm-12,.col-xs-12 {
+    margin-top: 20px;
+  }
